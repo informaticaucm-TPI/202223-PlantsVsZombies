@@ -85,7 +85,8 @@ In the first assignment, we will build a very simple version of the Plants vs. Z
 <!-- TOC --><a name="12-detalles-sobre-la-práctica"></a>
 ## 1.2. Details of the assignment
 
-The game is played on a board of **$4 × 8** tiles (4 rows and 8 columns). Each tile can contain zero or one entities, where an entity is a plant or a zombie. In our simplified version of the game, we only consider two types of plant, Peashooters and Sunflowers, and one type of zombie, Common Zombies, and sun can only be obtained from sunflowers. The zombies advance from right to left and win the game if they reach the l.h.s. of the board. The player wins by killing a number of zombies that is fixed *a priori* for each level (the level cannot change during the simplified game). Therefore, the game terminates if, during an update, either a zombie reaches the l.h.s. of the board (zombies win) or the stipulated number of zombies has been destroyed (player wins). At the start of the game, the board is empty and the player has 50 sun coins.
+The game is played on a board of **4 × 8** tiles (4 rows and 8 columns). Each tile can contain zero or one entities, where an entity is a plant or a zombie. In our simplified version of the game, we only consider two types of plant, Peashooters and Sunflowers, and one type of zombie, Common Zombies, and sun coins can only be obtained from sunflowers. The zombies advance from right to left and win the game if they reach the l.h.s. of the board. The player wins by killing a number of zombies that is fixed *a priori* for each level (the level cannot change during a session in our simplified version of the game). Therefore, the game terminates if, during an update, either a zombie reaches the l.h.s. of the board (zombies win) or the stipulated number of zombies has been destroyed (player wins). At the start of the game, the board is empty and the player has 50 sun coins.
+
 
 ```
 Level: EASY
@@ -178,7 +179,7 @@ Remaining zombies: 1
 Command > 
 ```
 
-The number of lives remaining appears in square brackets next to each entity (plant or zombie) on the board. The output finishes with the game prompt, `Command >', prompting the user to enter the next action.
+The number of lives remaining appears in square brackets next to each entity (plant or zombie) on the board. The output finishes with the game prompt, `Command >`, prompting the user to enter the next action.
 
 
 <!-- TOC --><a name="22-user-action"></a>
