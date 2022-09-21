@@ -303,13 +303,13 @@ You will also need the following classes:
 
 - `Controller`: This class contains the `run` method which in turn contains the loop controlling the execution of the game. Until the game terminates, this method repeatedly prompts the player to enter a command, then calls a method of the `Game` class to execute this command and, if appropriate, prints the new state of the game. The `Controller` class has an attribute to store an element of the `Game` class and an attribute called `in` to store an instance of the `Scanner` class, which is used to obtain the data from the standard input (by default, the keyboard). 
 
-- `PlantsVsZombies`: This class contains the `main` method of the application. This method reads the command-line parameters (there will be one or two of them), creates the `game`, passing it the seed and the level, creates the `controller`, passing it the `game` and the scanner, and then invokes the `run` method of the `controller`.
+- `PlantsVsZombies`: This class contains the `main` method of the application. This method reads the command-line parameters (there will be one or two of them), creates the `game`, passing it the seed and the level, creates the `controller`, passing it the `game` and the `scanner`, and then invokes the `run` method of the `controller`.
 
 
 <!-- TOC --><a name="33-observaciones-a-la-implementación"></a>
 ### 3.3 Observations about the implementación
 
-- The executing application only needs one controller and one game. Accordingly, in any execution of the application there will only ever be a single instance of the `Game` class and a single instance of the `Controller` class (which we refer to as the `game` object and the `controller` object, or simply the `game` and the `controller`). At any given time, you will also only need a single instance of the list classes, though you may decide to create a new one each time a reset is used[^2].
+- The executing application only needs one controller, one game and one scanner. Accordingly, in any execution of the application there will only ever be a single instance of the `Game` class, a single instance of the `Controller` class and a single instance of the `Scanner` class (which we refer to as the `game` object, the `controller` object and the `scanner` object, or simply the `game`, the `controller` and the `scanner`). At any given time, you will also only need a single instance of the list classes, though you may decide to create a new one each time a reset is used[^2].
 
 - We provide you with some templates containing part of the code for the application.
 
