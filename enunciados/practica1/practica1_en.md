@@ -234,7 +234,7 @@ In this first assignment, the computer's behaviour is pseudo-random, with the pr
 
 - The total number of zombies that will appear in the game.
 - The frequency of apparition of the zombies.
-- 
+
 The frequency determines the probability that a zombie will appear in a given cycle. Thus, if the frequency is 0.2, a zombie will appear approximately every 5 cycles, though their actual appearance may be more, or less, spaced out since it is (pseudo-)random.
 
 | Nivel   | Número de Zombis | Frecuencia |
