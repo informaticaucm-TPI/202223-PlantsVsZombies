@@ -47,7 +47,7 @@ For each of the TP assigmments, all the submissions from all the different TP gr
 <!-- TOC --><a name="11-introducción"></a>
 ## 1.1 Introduction
 
-Plants vs. Zombies is a popular *Tower Defense* type video game for mobiles. According to the Wikipedia:
+Plants vs. Zombies is a popular *Tower Defense* type video game. According to the Wikipedia:
 
 > As a horde of zombies approaches along several parallel lanes, the player must defend the home by putting down plants, which fire projectiles at the zombies or otherwise detrimentally affect them... Each plant has a different style of defense, such as shooting, exploding, and blocking. Different types of zombies have their own special behaviors and their own weaknesses to different plants.
 
