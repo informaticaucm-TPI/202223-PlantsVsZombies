@@ -228,11 +228,13 @@ Command > help
 - After a command that doesn't change the state of the game (including a command that results in an error message), **the board (and associated information) is not displayed**. 
 
 <!-- TOC --><a name="23-game-actions"></a>
-## 2.3 Game actions
+## 2.3 Game action
 
 In this first assignment, the computer's behaviour is pseudo-random, with the probability depending on the level. We define thee levels `EASY`, `HARD` and `INSANE`, where the level determines:
+
 - The total number of zombies that will appear in the game.
-- The frequency of apparition of the zombies
+- The frequency of apparition of the zombies.
+- 
 The frequency determines the probability that a zombie will appear in a given cycle. Thus, if the frequency is 0.2, a zombie will appear approximately every 5 cycles, though their actual appearance may be more, or less, spaced out since it is (pseudo-)random.
 
 | Nivel   | Número de Zombis | Frecuencia |
