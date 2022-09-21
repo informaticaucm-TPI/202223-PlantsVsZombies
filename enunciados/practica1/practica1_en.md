@@ -309,7 +309,7 @@ You will also need the following classes:
 <!-- TOC --><a name="33-observaciones-a-la-implementación"></a>
 ### 3.3 Observations about the implementación
 
-- The executing application only needs one game, one controller and one scanner. Accordingly, in any execution of the application there will only ever be a single instance of the `Game` class, a single instance of the `Controller` class and a single instance of the `Scanner` class (which we refer to as the `game` object, the `controller` object and the `scanner` object, or simply the `game`, the `controller` and the `scanner`). At any given time, you will also only need a single instance of the list classes, though you may decide to create a new one each time a reset is used[^2].
+- The executing application only needs one game, one controller and one scanner. Accordingly, in any execution of the application there will only ever be a single instance of the `Game` class, a single instance of the `Controller` class and a single instance of the `Scanner` class (which we refer to as the `game` object, the `controller` object and the `scanner` object, or simply the `game`, the `controller` and the `scanner`). At any given time, you will also only need a single instance of each of the list classes, though you may decide to create a new one each time a reset is used[^2].
 
 - We provide you with some templates containing part of the code for the application.
 
