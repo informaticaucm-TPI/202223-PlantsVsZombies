@@ -1,6 +1,6 @@
 # Assignment 1: Plants vs. Zombies
 
-**Submission: October 17th**
+**Submission deadline: October 17th, 09:00**
  
 **Objetive:** Introduction to object orientation and to Java; use of arrays and enumerations; string handling with the `String` class; input-output on the console.
 
