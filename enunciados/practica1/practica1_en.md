@@ -323,7 +323,7 @@ Note also that in a *Problem-Based Learning* approach, the student is required t
 
 
 <!-- TOC --><a name="4-entrega-de-la-práctica"></a>
-# 4. Entrega de la práctica
+# 4. Submission
 
 The assignment must be submitted as a single compressed (with *zip*) archive via the Campus Virtual submission mechanism not later than the date and time indicated at the start of this document. The zip archive should contain at least the following[^3].
 
