@@ -303,7 +303,7 @@ You will also need the following classes:
 
 - `Controller`: This class contains the `run` method which in turn contains the loop controlling the execution of the game. Until the game terminates, this method repeatedly prompts the player to enter a command, then calls a method of the `Game` class to execute this command and, if appropriate, prints the new state of the game. The `Controller` class has an attribute to store an element of the `Game` class and an attribute called `in` to store an instance of the `Scanner` class, which is used to obtain the data from the standard input (by default, the keyboard). 
 
-- `PlantsVsZombies`: This class contains the `main` method of the application. This method reads the command-line parameters (there will be one or two of them), creates the `game`, creates the `controller`, passing it the `game`, and then invokes the `run` method of the `controller`.
+- `PlantsVsZombies`: This class contains the `main` method of the application. This method reads the command-line parameters (there will be one or two of them), creates the `game`, passing it the seed and the level, creates the `controller`, passing it the `game` and the scanner, and then invokes the `run` method of the `controller`.
 
 
 <!-- TOC --><a name="33-observaciones-a-la-implementación"></a>
