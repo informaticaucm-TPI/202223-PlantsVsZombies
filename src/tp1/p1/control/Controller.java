@@ -1,9 +1,12 @@
 package tp1.p1.control;
 
+import static tp1.p1.view.Messages.*;
+
 import java.util.Scanner;
 
 import tp1.p1.logic.Game;
 import tp1.p1.view.GamePrinter;
+import tp1.p1.view.Messages;
 
 /**
  * Accepts user input and coordinates the game execution logic.
