@@ -129,7 +129,7 @@ In this section, we describe the properties and behaviour of the entities that a
 - **Behaviour**: Produces sun coins.
 - **Cost**: 20 sun coins.
 - **Endurance**: 1 damage point.
-- **Frequency**: Generates 10 sun coins every two cycles.
+- **Frequency**: Generates 10 sun coins every three cycles.
 - **Damage**: 0 (Does not cause any damage to the zombies).
 
 <!-- TOC --><a name="zombi-común"></a>
