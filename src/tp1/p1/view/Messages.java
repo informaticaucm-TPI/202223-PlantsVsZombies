@@ -26,7 +26,7 @@ public class Messages {
 
 	public static final String SEED_NOT_A_NUMBER = "The seed must be a number";
 
-	public static final String SEED_NOT_A_NUMBER_ERROR = String.format("%s: %%d", SEED_NOT_A_NUMBER);
+	public static final String SEED_NOT_A_NUMBER_ERROR = String.format("%s: %%s", SEED_NOT_A_NUMBER);
 
 	public static final String CONFIGURED_LEVEL = "Level: %s";
 

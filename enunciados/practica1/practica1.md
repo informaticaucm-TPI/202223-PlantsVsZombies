@@ -135,7 +135,7 @@ En esta sección describimos el tipo de objetos que aparecen en el juego y su co
 - **Comportamiento**: Genera soles.
 - **Coste**: 20 soles.
 - **Resistencia**: 1 punto de daño.
-- **Frecuencia**: Genera 10 soles cada tres ciclos.
+- **Frecuencia**: Genera 10 soles cada dos ciclos.
 - **Daño**: 0 (no ejerce ningún daño a los zombis).
 
 
