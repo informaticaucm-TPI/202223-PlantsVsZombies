@@ -4,7 +4,7 @@
  
 **Objetivo:** Iniciación a la orientación a objetos y a Java; uso de arrays y enumerados; manipulación de cadenas con la clase `String`; entrada y salida por consola.
 
-**Preguntas Frecuentes**: Como es habitual que tengáis dudas (es normal) las iremos recopilando en este [documento de preguntas frecuentes](faq.md). Para saber los últimos cambios que se han introducido [puedes consultar la historia del documento](https://github.com/informaticaucm-TPI/202223-PlantsVsZombies/blob/main/enunciados/practica1/faq.md).
+**Preguntas Frecuentes**: Como es habitual que tengáis dudas (es normal) las iremos recopilando en este [documento de preguntas frecuentes](faq.md). Para saber los últimos cambios que se han introducido [puedes consultar la historia del documento](https://github.com/informaticaucm-TPI/202223-PlantsVsZombies/commits/main/enunciados/practica1/faq.md).
 
 <!-- TOC start -->
   * [Control de copias](#control-de-copias)
@@ -135,7 +135,7 @@ En esta sección describimos el tipo de objetos que aparecen en el juego y su co
 - **Comportamiento**: Genera soles.
 - **Coste**: 20 soles.
 - **Resistencia**: 1 punto de daño.
-- **Frecuencia**: Genera 10 soles cada dos ciclos.
+- **Frecuencia**: Genera 10 soles cada tres ciclos.
 - **Daño**: 0 (no ejerce ningún daño a los zombis).
 
 
