@@ -7,8 +7,8 @@
 [//]: # "Bizarre syntax to get markdown comments that do not get transferred to the HTML"
 [//]: # "Not sure if I will produce a FAQ in English so, for the moment, I won't talk about it."
 [//]: # "**Preguntas Frecuentes**: Como es habitual que tengáis dudas (es normal) las iremos recopilando en este"
-[//]: # "[documento de preguntas frecuentes](faq.md). Para saber los últimos cambios que se han introducido"
-[//]: # "[puedes consultar la historia del documento](https://github.com/informaticaucm-TPI/2022-23_PlantasVsZombies/commits/main/enunciados/pr1/faq.md)"
+[//]: # "[documento de preguntas frecuentes](../faq.md). Para saber los últimos cambios que se han introducido"
+[//]: # "[puedes consultar la historia del documento](https://github.com/informaticaucm-TPI/2022-23_PlantasVsZombies/commits/main/enunciados/faq.md)"
 
 <!-- TOC start -->
   * [Copy detection](#control-de-copias)

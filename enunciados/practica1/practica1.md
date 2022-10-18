@@ -302,7 +302,7 @@ El programa debe aceptar un parámetro obligatorio y uno opcional por línea de 
 Para lanzar la aplicación se ejecutará la clase `tp1.p1.PlantsVsZombies`,
 por lo que se aconseja que todas las clases desarrolladas en la práctica estén en el paquete `tp1.p1` (o subpaquetes suyos). Para implementar la práctica necesitarás, al menos, las siguientes clases:
 
-- `Sunflower`, `Peashooter`, `Zombie`: Estas tres clases encapsulan el comportamiento de los elementos del juego (*game objects*). Tienen atributos privados, como su posición `x, y`, su vida, etc. También tienen un atributo en el que almacenan el juego, es decir, una instancia de la clase `Game` (que será única en el programa) que como veremos contiene la lógica del juego. De este modo, estas clases podrán usar los métodos de la clase `Game` para consultar si pueden hacer o no una determinada acción.
+- `Sunflower`, `Peashooter`, `Zombie`: Estas tres clases encapsulan el comportamiento de los elementos del juego (*game objects*). Tienen atributos privados, como su posición `col, row`, su vida, etc. También tienen un atributo en el que almacenan el juego, es decir, una instancia de la clase `Game` (que será única en el programa) que como veremos contiene la lógica del juego. De este modo, estas clases podrán usar los métodos de la clase `Game` para consultar si pueden hacer o no una determinada acción.
 
 - `SunflowerList`, `PeashooterList`, `ZombieList`: Contiene un `array` de los respectivos elementos del juego, así como métodos auxiliares para su gestión.
 
