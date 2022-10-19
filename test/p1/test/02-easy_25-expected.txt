@@ -1,0 +1,114 @@
+PlantsVsZombies 1.0
+
+Level: EASY
+Random generator initialized with seed: 25
+Number of cycles: 0
+Sun coins: 50
+Remaining zombies: 3
+
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: 
+
+Number of cycles: 1
+Sun coins: 50
+Remaining zombies: 3
+
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+
+Command > 
+[DEBUG] Executing: 
+
+Number of cycles: 2
+Sun coins: 50
+Remaining zombies: 3
+
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+
+Command > 
+[DEBUG] Executing: 
+
+Number of cycles: 3
+Sun coins: 50
+Remaining zombies: 3
+
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+  |        |        |        |        |        |        |        |        |
+   ──────── ──────── ──────── ──────── ──────── ──────── ──────── ──────── 
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: a
+
+[ERROR] Error: Missing parameters
+
+Command > 
+[DEBUG] Executing: e
+
+Game over
+Player leaves the game
