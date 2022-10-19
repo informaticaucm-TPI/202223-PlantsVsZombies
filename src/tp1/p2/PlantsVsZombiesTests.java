@@ -71,32 +71,32 @@ public class PlantsVsZombiesTests {
 
 	@Test
 	public void test00() {
-		parameterizedTest(Paths.get("test/00-easy_25-input.txt"), Paths.get("test/00-easy_25-expected.txt"),
-				Paths.get("test/00-easy_25-output.txt"), new String[] { "EASY", "25" });
+		parameterizedTest(Paths.get("test/p2/00-easy_25-input.txt"), Paths.get("test/p2/00-easy_25-expected.txt"),
+				Paths.get("test/p2/00-easy_25-output.txt"), new String[] { "EASY", "25" });
 	}
 
 	@Test
 	public void test01() {
-		parameterizedTest(Paths.get("test/01-easy_25-input.txt"), Paths.get("test/01-easy_25-expected.txt"),
-				Paths.get("test/01-easy_25-output.txt"), new String[] { "EASY", "25" });
+		parameterizedTest(Paths.get("test/p2/01-easy_25-input.txt"), Paths.get("test/p2/01-easy_25-expected.txt"),
+				Paths.get("test/p2/01-easy_25-output.txt"), new String[] { "EASY", "25" });
 	}
 
 	@Test
 	public void test02() {
-		parameterizedTest(Paths.get("test/02-easy_25-input.txt"), Paths.get("test/02-easy_25-expected.txt"),
-				Paths.get("test/02-easy_25-output.txt"), new String[] { "EASY", "25" });
+		parameterizedTest(Paths.get("test/p2/02-easy_25-input.txt"), Paths.get("test/p2/02-easy_25-expected.txt"),
+				Paths.get("test/p2/02-easy_25-output.txt"), new String[] { "EASY", "25" });
 	}
 
 	@Test
 	public void test03() {
-		parameterizedTest(Paths.get("test/03-hard_17-input.txt"), Paths.get("test/03-hard_17-expected.txt"),
-				Paths.get("test/03-hard_17-output.txt"), new String[] { "HARD", "17" });
+		parameterizedTest(Paths.get("test/p2/03-hard_17-input.txt"), Paths.get("test/p2/03-hard_17-expected.txt"),
+				Paths.get("test/p2/03-hard_17-output.txt"), new String[] { "HARD", "17" });
 	}
 
 	@Test
 	public void test04() {
-		parameterizedTest(Paths.get("test/04-insane_360-input.txt"), Paths.get("test/04-insane_360-expected.txt"),
-				Paths.get("test/04-insane_360-output.txt"), new String[] { "INSANE", "360" });
+		parameterizedTest(Paths.get("test/p2/04-insane_360-input.txt"), Paths.get("test/p2/04-insane_360-expected.txt"),
+				Paths.get("test/p2/04-insane_360-output.txt"), new String[] { "INSANE", "360" });
 	}
 
 }
