@@ -15,7 +15,7 @@
 <!-- TOC --><a name="práctica-2-parte-i-plantas-contra-zombis-refactored"></a>
 # Assignment 2 (Part I): Plants versus zombis refactored
 
-**Submission: 7th of November at 09:00hrs**
+**Submission (optional): 7th of November at 09:00hrs**
  
 **Objective:** inheritance, polymorphism, abstract classes and interfaces
 
