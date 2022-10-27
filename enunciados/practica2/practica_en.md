@@ -98,9 +98,10 @@ Our presentation of the Command pattern involves the following classes:
 any semantics so, for example, the property of coordinates of being on or off the board should not be checked
 in the parsing phase.
 
+
 In the previous assignment, the parsing (i.e. finding out which command is to be executed and, when appropriate,
 with which parameter values) was carried out directly via a switch (or `if-else` ladder) contained in (or called
-from) the **Game loop** of the the `run` method of the controller, with one case for each different command.
+from) the **Game loop** of the `run` method of the controller, with one case for each different command.
 
 In this assignment, the drastically slimmed-down code of the controller `run` method will look something like
 the following (your code does not have to be identical but should have the same structure):
@@ -200,17 +201,18 @@ public class HelpCommand extends Command {
 }
 ```
 
-As already stated the concrete command classes inherit from the `Command` class and must
+As already stated, the specific command classes inherit from the `Command` class and must
 implement the abstract `execute` method. This method executes the action associated to
-the command by simply calling a method of the game (actually by calling a method of the `GameWorld`
-that we will explain later). The `execute` method returns a value of type `ExecutionResult` that
-indicates whether the command succeeded or not, the error message if necessary and whether or
-not to print the board and the game-state information.
-`ExecutionResult` is a [Java Record](https://www.geeksforgeeks.org/what-are-java-records-and-how-to-use-them-alongside-constructors-and-methods/)
-that allows us to return multiple values from a method in Java (as if it were a tuple or a C/C++ struct).
-Commands that have parameters should also overwrite the implementation of the **`create(String[])`**
-method contained in the `Command` class since this implementation method is only valid for commands
-that have no parameters.
+the corresponding command by simply calling a method of the game (actually by calling a method
+of the `GameWorld` that we will explain later). The `execute` method returns a value of type
+`ExecutionResult` that indicates whether the command succeeded or not, the error message if
+necessary, and whether or not to print the board and the game-state information.
+`ExecutionResult` is a [Java Record](https://www.geeksforgeeks.org/what-are-java-records-and-how-to-use-them-alongside-constructors-and-methods/),
+a class whose purpose is to encapsulate multiple values in order to return multiple values
+from a Java method (similar to returning a tuple or a C/C++ struct).
+Specific command classes that represent commands with parameters should overwrite the
+implementation of the **`create(String[])`** method contained in the `Command` class since this
+implementation is only valid for classes that represent commands with no parameters.
 
 <!-- TOC --><a name="comando-reset"></a>
 ### Comando Reset
