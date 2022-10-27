@@ -591,9 +591,9 @@ anything with the object returned by this method except call the
 `receiveZombieAttack` method on it, since this is the only method that is defined
 in the declared type (i.e. the `GameItem` interface).
 
-For the moment, the `GameItem` interface is very simple but as we extend the game
-we will need to add more methods in order to add other types of interactions 
-between the elements of the game. 
+For the moment, the `GameItem` interface is very simple but as we extend our program
+we will need to add more methods to it in order to add other types of interactions 
+between different elements of the game. 
 
 <!-- TOC --><a name="pruebas"></a>
 ## Pruebas
