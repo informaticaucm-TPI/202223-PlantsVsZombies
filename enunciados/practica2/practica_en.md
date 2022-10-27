@@ -36,8 +36,8 @@ at the keyboard and will be constructed by removing some code from the controlle
 method of the previous assignment and distributing its functionality among a set of classes.
 
     * The second inheritance hierarchy will be used to organise the game objects which represent
-the different creatures appearing in the game, thereby avoiding a lot of repetition of code that was
-used in the previous assignment. This inheritance hierarchy will also enable us to use a
+the different creatures appearing in the game, thereby the repetition of code that occurred
+in the previous assignment. This inheritance hierarchy will also enable us to use a
 single data structure to store the state of the game, instead of using a different list for each type
 of game object.
 
@@ -75,9 +75,9 @@ that are concrete subclasses of the abtract `Command` class.
 
 Each concrete command subclass has (at least) the following methods:
 
-  * One or more methods for parsing (i.e. reading them and creating the corresponding internal representation)
-    the words of the input string. In the code provided, the parsing is divided into two stages, implemented
-    by the following two methods:
+  * One or more methods for parsing the words of the input string (i.e. reading them and creating the 
+    corresponding internal representation). In the code provided, the parsing is divided into two stages,
+    implemented via the following two methods:
     
     `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
     to the name of the command in question, returning the value `null` if it does not and the value returned
