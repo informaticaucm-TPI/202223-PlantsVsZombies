@@ -15,37 +15,46 @@
 <!-- TOC --><a name="práctica-2-parte-i-plantas-contra-zombis-refactored"></a>
 # Assignment 2 (Part I): Plants versus zombis refactored
 
-**Submission (optional): 7th of November at 09:00hrs**
+**Submission: 7th of November at 09:00hrs**
  
 **Objective:** inheritance, polymorphism, abstract classes and interfaces
 
 <!-- TOC --><a name="introducción"></a>
 ## Introducción
 
-The main objective of this assignment is to apply the mechanisms offered by OOP to improve the code developed in the previous assignment. In particular, this assignment will include the following improvements:
+In this assignment we apply the mechanisms offered by OOP to improve and extend the code developed
+in the previous assignment in the following ways:
 
-- En *Part I* of assignment 2 we refactorise [^1] the code of [Assignment 1](../practica1/practica1_en.md) in order to prepare it for *Part II*.
-To do so, we modifiy part of the controller, distributing its functionality among a set of classes thereby facilitating future extensions.
-  
-- Since this part of the assignment consists only of refactoring, the resulting implementation should pass the same tests as the implementation of the previous assignment.
+   First, as explained in Section~\ref{sec:pr2:refactoring}, we refactor\footnote{Refactoring
+   means changing the structure of code (to improve it, presumably) without changing what it does.}
+   the code of the previous assignment,
+   removing some code from the controller \textsf{run} method and distributing its functionality
+   among a set of classes. This involves applying what is known as the \emph{Command pattern} in
+   combination with the \emph{Factory pattern}.
 
-- We are going to make use of inheritance to rearrange game items. We have seen that there is a lot 
-of repeated code in the different types of objects. Therefore, we are going to create a hierarchy of 
-classes that allows us to easily extend the functionality of the game.
+- In *Part I* of Assignment 2, we refactor [^1] the code of [Assignment 1](../practica1/practica1_en.md)
+in order to prepare it for the extensions to be made in *Part II*. Note that
+since this part of the assignment consists only of refactoring, the resulting implementation should
+pass the same tests as the implementation of the previous assignment. The
+refactoring consists of creating the following two inheritance hierarchies.
 
-- In Part II, once the assignment is refactored, we will add new objects to the game, and new commands,
- in a safe, orderly and reliable way, thanks to the new structure of the code.
+    * The first inheritance hierarchy concerns the treatment of the commands introduced by the user
+at the keyboard and will be constructed by removing some code from the controller `run`
+method of the previous assignment and distributing its functionality among a set of classes.
 
-- Inheritance will also allow us to redefine how we store game state information. In the previous assignment, 
-since we didn't use inheritance, we had to have a list for each set of objects. However, in this version 
-of the assignment we can use a single data structure for all game objects.
+    * The second inheritance hierarchy will be used to organise the game objects which represent
+the different creatures appearing in the game, thereby avoiding a lot of repetition of code that was
+used in the previous assignment. This inheritance hierarchy will also enable us to use a sn
+single data structure to store the state of the game, instead of using a different list for each type
+of game objects.
 
-[^1]: The term 'refactorise' refers to changing the structure of the code (to improve it, one assumes!) without changing
-its functionality.
+- In *Part II* of Assignment 2, we extend the game by adding new commands and new game objects. Thanks
+to the structure introduced in the refactoring of part I, the extensions of part II can be carried out
+relatively easily, by modifying very little of the existing code, and the resulting code will be robust
+and reliable.
 
-All the changes discussed above will be carried out progressively. The main objective is to extend the 
-assignment in a robust way, preserving the functionality in each step we do, and modifying the minimum code 
-to extend it.
+[^1]: Refactoring means changing the structure of the code (to improve it, presumably) without changing
+its functionality (i.e. without changing what it does).
 
 <!-- TOC --><a name="refactorización-de-la-solución-de-la-práctica-anterior"></a>
 ## Refactoring the solution of the previous assignment
@@ -53,35 +62,48 @@ to extend it.
 <!-- TOC --><a name="patrón-command"></a>
 ### The command pattern
 
-In the previous assignment, the user could do several actions: add a plant, list the available plants, 
-ask for help, etc. The technical objective of this Part I is to be able to add new actions without 
-having to modify code outside the new action. To do this, let's look at the Command design pattern[^2], 
-which is perfect for this type of structures.
+The first refactoring task concerns the commands, i.e. the different actions that the user of the 
+game can carry out, such as adding a plant, listing the available plants, asking for help, etc. Our
+refactoring objective is to structure the code in such a way as to facilitate the addition of new
+commands (or the deletion of old ones). As one would expect, this is a very well-known problem
+in OOP which has solutions that are very well tried and tested, so we do not need to invent our own.
+The solution we will use is a variant of the *Command design pattern*[^2], one of the twenty-three
+software patterns presented in the foundational software patterns book "Design Patterns: Elements of
+Reusable Object-Oriented Software" first published in 1994. The general idea of the command
+pattern is to encapsulate each command in its own class.
 
-The general idea is to encapsulate each user action in its own class. Each action will be a command, such 
-that the behavior of one command is completely isolated from the rest.
+Our presentation of the Command pattern involves the following classes:
 
-[^2]: In fact, what we present here is a modification of the *Command* pattern adapted to the needs of
-the assignment.
-
-In the Command pattern, the following entities, which we will explain in several steps as we delve into 
-the details, will intervene:
-
-- The `Command` class. It is an abstract class that encapsulates the common functionality of all concrete 
+- The `Command` class: an abstract class that encapsulates the functionality common to all the 
 commands.
 
-- Specific commands. They are the actions of the user: `AddPlantCommand`, `HelpCommand`, `ExitCommand`... 
-Each action is going to have its own class. Each command has two basic methods:
+- Specific command classes, in this assignment `AddPlantCommand`, `HelpCommand`, `ExitCommand` etc.,
+that are concrete subclasses of the abtract `Command` class.
 
-    - `matchCommand(String)`: This is the method that checks whether an action entered by keyboard corresponds 
-      to that of the command.
-    - `create(String[])`: This is the method that creates an instance of the command given the parameters 
-      provided by the user.
-    - `execute(GameWorld)`: executes the action of the command, modifying the game. The explanation of why
-      the class `GameWorld` is used instead of the class `Game` is given later.
+Each concrete command subclass has (at least) the following methods:
 
-* The `Controller` class. The controller in this case is going to be very small; as we will see below, 
-  its functionality will be delegated to specific commands.
+    - a method or methods for parsing the words of the input string. In the code provided, the parsing is
+      divided into two stages, implemented by the following two methods:
+
+      * `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
+      to the name of the command in question, returning the value `null` if it does not and the value returned
+      by the `create` method if it does.
+
+      * `create(String[])`: parses the remaining words of the input string (contained in the array of strings
+      passed via its only parameter), if there are any, checking whether they correspond to valid command
+      arguments [^2]. If they do, it creates and returns an object of the same command subclass, which stores
+      the values of the parsed command arguments in attributes, and if they do not, it prints an error message
+      and returns `null`.
+
+    - `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
+      The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
+
+* The `Controller` class: the controller class contains much less code then in the previous assignment since
+  a large part of its functionality is now delegated to the specific command classes, as explained below.
+
+[^2]: Strictly speaking, the parsing phase should only check properties of the input data that do not involve
+any semantics so, for example, the property of coordinates of being on or off the board should not be checked
+in the parsing phase.
 
 In the previous assignment, to know which command was executed, the **Game loop** implemented using the `run` 
 method of the controller contained a switch (or a series of nested if's) whose options corresponded to 
