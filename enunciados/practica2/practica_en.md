@@ -401,7 +401,7 @@ Notice that, thanks to the use of the `GameObject` abstract class and associated
 
 - Most of the logic of the game is in the game object methods (i.e. the methods of the concrete
   subclasses of the `GameObject` class). Each class knows how it is updated, what happens when it is
-  attacked, etc. The code provided still assumes the use of a `ZombieManager` but with a reduced role,
+  attacked, etc. The code provided still assumes the use of a `ZombieManager` but with a reduced role
   w.r.t. assignment 1, since the zombies themselves are now stored by the container in the common store.
 
 <!-- TOC --><a name="patrón-factory"></a>
