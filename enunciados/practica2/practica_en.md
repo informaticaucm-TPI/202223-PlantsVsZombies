@@ -75,37 +75,35 @@ that are concrete subclasses of the abtract `Command` class.
 
 Each concrete command subclass has (at least) the following methods:
 
-  * One or more methods for parsing the words of the input string (i.e. reading them and creating the 
-    corresponding internal representation). In the code provided, the parsing is divided into two stages,
-    implemented via the following two methods:
-    
-    `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
-    to the name of the command in question, returning the value `null` if it does not and the value returned
-    by the `create` method if it does.
-    
-    `create(String[])`: parses the remaining words of the input string (contained in the array of strings
-    passed via its only parameter), if there are any, checking whether they correspond to valid command
-    arguments [^2]. If they do, it creates and returns an object of the same command subclass, which stores
-    the values of the parsed command arguments in attributes, and if they do not, it prints an error message
-    and returns `null`.
+    * a method, or methods, for parsing the words of the input string. In the code provided, the parsing is
+      divided into two stages, implemented by the following two methods:
 
-  * `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
-     The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
+      `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
+      to the name of the command in question, returning the value `null` if it does not and the value returned
+      by the `create` method if it does.
+
+      `create(String[])`: parses the remaining words of the input string (contained in the array of strings
+      passed via its only parameter), if there are any, checking whether they correspond to valid command
+      arguments [^2]. If they do not, it prints an error message and returns `null` and if they do, it
+      creates and returns an object of the same command subclass, which stores the values of the parsed
+      command arguments in attributes.
+
+    * `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
+      The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
 
 - The `Controller` class: the controller class contains much less code then in the previous assignment since
   a large part of its functionality is now delegated to the specific command classes, as explained below.
 
 [^2]: Strictly speaking, the parsing phase should only check properties of the input data that do not involve
 any semantics so, for example, the property of coordinates of being on or off the board should not be checked
-in this phase.
+in the parsing phase.
 
-In the previous assignment, to know which command was executed, the **Game loop** implemented using the `run` 
-method of the controller contained a switch (or a series of nested if's) whose options corresponded to 
-the different commands.
+In the previous assignment, the parsing (i.e. finding out which command is to be executed and, when appropriate,
+with which parameter values) was carried out directly via a switch (or `if-else` ladder) contained in (or called
+from) the **Game loop** of the the `run` method of the controller, with one case for each different command.
 
-In the new version, the `run` method of the controller will more or less look like this. 
-Your code does not have to be exactly the same, but the important thing is that you see that it resembles 
-this proposal:
+In this assignment, the drastically slimmed-down code of the controller `run` method will look something like
+the following (your code does not have to be identical but should have the same structure):
 
 ```java
 while (!game.isFinished() && !game.isPlayerQuits()) {
@@ -132,23 +130,28 @@ while (!game.isFinished() && !game.isPlayerQuits()) {
 }
 ```
 
-In the loop, while the game does not end, we read an action from the console, parse it to obtain the 
-corresponding command, execute the command and, if the execution is satisfactory and the state of the 
-game has changed, we repaint it. Otherwise, if the command is invalid, we display an error.
+In the loop, while the game has not finished, the program reads a command from the console, parses it
+to obtain the corresponding command object and then calls the execute method of this command object.
+If the execution is successful and the state of the game has changed, it prints the board and if the
+command is invalid, it prints an error message.
 
-In the displayed loop, the most important part is this line:
+The most important part of this loop is the following line of code:
 ```java
 Command command = Command.parse(words);
 ```
 
-The key point is that the controller only handles abstract commands, so it doesn't know which concrete 
-command is executed and what exactly the command does. This is the mechanism that allows us to easily 
-add new specific commands.
+The key point is that the controller only handles abstract commands so it doesn't know which concrete 
+command is being executed nor exactly what this concrete command does. This is the dynamic-binding
+mechanism that allows us to easily add new specific commands.
 
-The **`parse(String[])`** method is a static method of the Command class, responsible for finding which specific 
-command corresponds to the user's input. To do this, the Command class maintains an AVAILABLE_COMMANDS list 
-of available commands. This method loops through the list of commands to determine, calling the 
-matchCommand(String) method of each command, to find out which user input corresponds to. 
+The **`parse(String[])`** method is a static method of the `Command` class that is responsible for
+for finding which
+specific command corresponds to the user's input. It does so by calling the `matchCommand(String)` on an
+object of each specific command class in turn (it loops through the `AVAILABLE_COMMANDS` list, which
+contains exactly one instance of each of the concrete command subclasses) until one of them returns a
+non-null value in the form of a concrete command object. If all of them return `null`, meaning
+that the input text does not correspond to any of the available commands, it prints
+the *unknown command* message.
 
 The skeleton of the code is as follows:
 ```java
@@ -171,12 +174,11 @@ public abstract class Command {
 }
 ```
 
+After receiving a `Command` object from the `parse` method, the controller simply asks the
+game to execute the cooresponding action.
 
-
-The `Controller`, after receiving a `Command`, will simply ask `Game` to execute the command.
-
-All commands have a series of details: name, shortcut, detail, etc. For example the specific command 
-'HelpCommand:
+All concrete commands have a series of details: `name`, `shortcut`, `detail`, etc. For example the
+specific command  `HelpCommand` has the following code:
 
 ```java
 public static final name, shortcut, details;
