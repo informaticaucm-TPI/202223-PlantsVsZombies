@@ -64,10 +64,10 @@ commands (or the deletion of old ones). As one would expect, this is a very well
 in OOP which has solutions that are very well tried and tested, so we do not need to invent our own.
 The solution we will use is a variant of the *Command design pattern*, one of the twenty-three
 software patterns presented in the foundational software patterns book "Design Patterns: Elements of
-Reusable Object-Oriented Software" first published in 1994. The general idea of the command
-pattern is to encapsulate each command in its own class.
+Reusable Object-Oriented Software" first published in 1994. The general idea of the *Command
+pattern* is to encapsulate each command in its own class.
 
-Our presentation of the Command pattern involves the following classes:
+Our presentation of the *Command pattern* involves the following classes:
 
 - The `Command` class: an abstract class that encapsulates the functionality common to all the 
   commands.
@@ -405,12 +405,16 @@ Notice that, thanks to the use of the `GameObject` abstract class and associated
   w.r.t. assignment 1, since the zombies themselves are now stored by the container in the common store.
 
 <!-- TOC --><a name="patrón-factory"></a>
-### Patrón Factory
+### Encapsulating the object-creation logic
 
-El patrón *Factory* es otro de los patrones más utilizados. Al igual que con el patrón *Command*, no vamos a estudiar este patrón de manera rigurosa sino que vamos a adaptarlo a nuestras necesidades concretas.
-
-Una *Factoria* es *responsable de crear objetos evitando exponer la lógica de creación al cliente*. En la primera versión de la práctica, la lógica de creación de plantas está fuertemente acoplada con el controlador de la aplicación. La  forma de incorporar una nueva planta es la de incluir un nuevo bloque al switch o if's que tenemos en el método run. Seguramente tu código se parece a este:
-
+We will use a variant of the *Factory pattern*, another well-known software pattern,
+to encapsulate the object-creation logic in a dedicated class, called a factory class, thereby hiding
+it from the invoker of the factory class methods. For
+example, in the previous version of the assignment, the plant-creation
+logic was in `run` method of the controller (with the use of the *Command pattern*, this code will
+probably now be found in the `execute` method of the `AddPlantCommand` class) and looked something 
+like the following:
+ 
 ```java
   case "sunflower":
   case "s":
@@ -423,14 +427,19 @@ Una *Factoria* es *responsable de crear objetos evitando exponer la lógica de c
     break;
 ```
 
-En nuestra nueva versión queremos que se parezca a esto:
+If we create a plant factory according to the *Factory pattern*, the corresponding code
+can look more like the following:
 
 ```java
-Plant plant = PlantFactory.spawnPlant(this.plantName, game, col, row);
+Plant plant = PlantFactory.spawnPlant(plantName, game, col, row);
 game.addPlant(plant);
 ```
 
-Haciendo uso del patrón *Factory*, podemos extraer la lógica de creación a una clase dedicada exclusivamente a ello. De esta manera añadir o eliminar una planta de la lista es tan sencillo como crear la clase correspondiente y modificar la *Factory*. Así, los cambios en la lista ya no afectarán al controlador o al juego. Con esta propuesta, la lógica de creación está desacoplada de la lógica del juego y puede evolucionar de forma independiente.
+With the decoupling of the object-creation logic from the game logic and the command
+logic that the *Factory pattern* provides, adding a new type of plant is as simple as
+adding a new type of command: simply create the new class and then add an object of
+that class to the `AVAILABLE_PLANTS` array of the factory class. No other code need
+by changed. Deleting a type of plant is even easier.
 
 <!-- TOC --><a name="implementación"></a>
 #### Implementación
