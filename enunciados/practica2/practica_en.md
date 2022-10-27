@@ -4,9 +4,9 @@
   * [Refactorising the solution of the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
     + [Restructuring the code for parsing and executing the commands](#patrón-command)
     + [Extending the functionality of the reset command](#comando-reset)
-    + [Using interfaces to define different perspectives on the Game class](#la-clase-game-y-sus-diferentes-usos)
+    + [Using interfaces to define different perspectives on the `Game` class](#la-clase-game-y-sus-diferentes-usos)
     + [Restructuring the code for handling the elements of the game](#herencia-y-polimorfismo)
-    + [The `GameObjectContainer` class](#gameobjectcontainer)
+    + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
     + [The factory pattern](#patrón-factory)
       - [Implementation](#implementación)
     + [GameItem y callbacks](#gameitem-y-callbacks)
@@ -15,12 +15,12 @@
 <!-- TOC --><a name="práctica-2-parte-i-plantas-contra-zombis-refactored"></a>
 # Assignment 2 (Part I): Plants versus zombis refactored
 
-**Submission: 7th of November at 09:00hrs**  (submission of part I is optional, in order to receive feedback)
+**Submission: 7th of November at 09:00hrs**
  
 **Objective:** inheritance, polymorphism, abstract classes and interfaces
 
 <!-- TOC --><a name="introducción"></a>
-## Introduction
+## Introducción
 
 In this assignment we apply the mechanisms offered by OOP to improve and extend the code developed
 in the previous assignment in the following ways:
@@ -36,11 +36,11 @@ at the keyboard and will be constructed by removing some code from the controlle
 method of the previous assignment and distributing its functionality among a set of classes,
 see the section [*Restructuring the code for parsing and executing the commands*](#patrón-command)
 
-    * The second inheritance hierarchy will be used to organise the classes that represent
-the different creatures appearing in the game, among other benefits, avoiding the repetition of code
-that occurred in the previous assignment. This inheritance hierarchy will also enable us to use a
+    * The second inheritance hierarchy will be used to organise the game objects which represent
+the different creatures appearing in the game, thereby avoiding a lot of repetition of code that was
+used in the previous assignment. This inheritance hierarchy will also enable us to use a
 single data structure to store the state of the game, instead of using a different list for each type
-of element,
+of game objects,
 see the section [*Restructuring the code for handling the elements of the game*](#herencia-y-polimorfismo)
 
 - In *Part II* of Assignment 2, we extend the game by adding new commands and new game objects. Thanks
@@ -227,7 +227,7 @@ the same type and the same order as the ones used when starting the game. In the
 also the seed of the `Random` object must be reset (or a new `Random` object created).
 
 <!-- TOC --><a name="la-clase-game-y-sus-diferentes-usos"></a>
-### Using interfaces to define different perspectives on the Game class
+### Using interfaces to define different perspectives on the `Game` class
 
 The `Game` class is used by functionally different parts of the application: e.g. the `Controller`
 uses methods of the `Game` class for one purpose while the `GamePrinter` uses other methods of the
@@ -286,12 +286,12 @@ of `Game` (e.g. `GameObject` and `Command`) would be to use *inner classes* whic
 in TPII.
 
 <!-- TOC --><a name="herencia-y-polimorfismo"></a>
-### Restructuring the code for handling the elements of the game
+### Restructuring the code for handling the game elements
 
 In the same way as the code structure known as the *Command pattern* enables new commands to be introduced with
 minimal changes to the existing code (and, in particular, without changing the code of the controller),
 we would also like to be able to introduce new game objects with only minimal changes to the existing code.
-Just as the key to obtaining this desired property in the case of the command pattern was that the
+Just as the key to obtaining this desirable property in the case of the *Command pattern* was that the
 controller does not know which concrete command is being handled, the key to this in the case at hand
 is that the game does not know which specific element of the game is being handled. To that end, we
 define an abstract class called `GameObject` from which the concrete classes, each representing a different
@@ -301,7 +301,7 @@ element of the game, then derive. Each concrete class inherits attributes and me
  - providing implementations for the abstract methods that it inherits,
  - possibly overwriting some of the non-abstract methods that it inherits,
  - possibly adding new methods.
- - 
+
 To specify the attributes and methods of the `GameObject` class, we need to think about the behaviour that
 is common to all the elements of the game.
 
@@ -313,12 +313,12 @@ useful is according to their life-cycle as follows:
 - `onEnter()`: invoked when this element enters the game
 - `update()`: invoked to evolve this element on each cycle of the game
 - `onExit()`: invoked when this element leaves or is removed from the game
-- `isAlive()`: indicates whether or not an object has any lives left, returning true if it does and false if it does not.
+- `isAlive()`: indicates whether or not this element has any lives left, returning true if it does and false if it does not.
 
 Note that in many simple objects these methods will be trivial and some will even be empty.
 
 We now provide the skeleton of the code for the `GameObject` class. The `GameItem` interface implemented
-by this class is described below
+by this class is described below.
 
 ```java
 public abstract class GameObject implements GameItem {
@@ -362,16 +362,23 @@ public abstract class GameObject implements GameItem {
 ```
 
 <!-- TOC --><a name="gameobjectcontainer"></a>
-###  `GameObjectContainer`
+###  Delegating functionality of the `Game` to the `GameObjectContainer`
 
-En nuestra práctica queremos que el `Game` sea lo más simple posible y, aunque es la clase principal de nuestro programa, su labor (responsabilidad) es coordinar al resto de las clases, y lo hace *delegando*.
+In the same way as we simplified the `Controller` class, it would also be a good idea to simplify the `Game` class
+by reducing its role to that of coordinating the other classes. This can be done by delegating the functionality
+of the `Game` class to other classes, reducing the body of many of its methods to mere invocations of methods of
+other classes, which is where the work is really carried out. One such class is the `GameObjectContainer` (this
+class is the assignment 2 version of the `Board` class that you may have implemented in assignment 1, together
+with some elements of the list classes of assignment 1).
 
-La delegación consiste en lo siguiente: cuando están correctamente programados, los métodos de `Game` son muy pequeños y lo que hacen es llamar a los métodos de otros objetos (colaborar) que son los que realmente hacen el trabajo. Uno de los objetos en los que delega es `GameObjectContainer`.
-
-El `GameObjectContainer`  es el almacén de objetos del juego (para acortar escribiremos contenedor). Es el encargado de actualizarlos, borrarlos, etc. Para el almacén podemos utilizar cualquier tipo de colección. Nosotros por simplicidad vamos a usar un `ArrayList` de `GameObject`s cuya declaración es así:
+The `GameObjectContainer` encapsulates the data structure used to store the objects representing elements of the
+game (hereinafter we will refer to the unique instance of this class as the container) as well as the methods
+for updating them, deleting them etc. For the store itself, we can use any type of collection (and since it
+is encapsulated, we can change to another type of collection any time we want without affecting the rest of
+the code); for simplicity,
+we propose to use the `ArrayList` class, typed using the `List` interface, declared as follows:
 
 ```java
-
 public class GameObjectContainer {
 
 	private List<GameObject> gameObjects;
@@ -382,17 +389,20 @@ public class GameObjectContainer {
     //...
 ```
 
-Es muy importante que los detalles de la implementación del `GameObjectContainer` sean privados. Eso permite cambiar el tipo de colección sin tener que modificar código en el resto de la práctica. 
+Notice that, thanks to the use of the `GameObject` abstract class and associated inheritance hierarchy:
 
-En relación a la primera práctica, hay varios aspectos que van a cambiar en la estructura de esta práctica:
+- The container encapsulates a single store for all
+  the different elements of the game (rather than a store for each type of element as in assignment 1),
 
-- Sólo tenemos un contenedor para todos los objetos concretos de juego.
+- Similarly to the methods of the `Game` class, the methods of the container class do not know which
+  element of the game are being stored and manipulated, dealing only in abstractions. Neither the
+  `Game` nor the `GameObjectContainer` should contain any references to concrete subclasses of the
+  `GameObject` class.
 
-- Desde el `Game` y el *contenedor* sólo manejamos abstracciones de los objetos, por lo que no podemos distinguir de qué clase son los objetos que están dentro del contenedor, una vez añadidos.
-
-- Toda la lógica del juego estará en los objetos de juego. Cada clase concreta conoce sus detalles acerca de cómo se actualiza, qué pasa cuando ataca o es atacada, etc. En nuestro caso, también tenemos `ZombieManager` que seguirá teniendo la lógica de gestión de los zombies, pero los zombies estarán dentro del *contenedor*. 
-
-- Para asegurarnos de que el `Game` está bien programado, no podrá tener ninguna referencia a `GameObject`s concretos, solo podrá tener referencias al *contenedor*.
+- Most of the logic of the game is in the game object methods (i.e. the methods of the concrete
+  subclasses of the `GameObject` class). Each class knows how it is updated, what happens when it is
+  attacked, etc. The code provided still assumes the use of a `ZombieManager` but with a reduced role,
+  w.r.t. assignment 1, since the zombies themselves are now stored by the container in the common store.
 
 <!-- TOC --><a name="patrón-factory"></a>
 ### Patrón Factory
