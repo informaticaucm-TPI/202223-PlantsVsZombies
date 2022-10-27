@@ -8,8 +8,8 @@
     + [Restructuring the code responsible for handling the elements of the game](#herencia-y-polimorfismo)
     + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
     + [Encapsulating the object-creation logic](#patrón-factory)
-      - [Implementation of the *Factory pattern*](#implementación)
-    + [GameItem y callbacks](#gameitem-y-callbacks)
+      - [Implementating the *Factory pattern*](#implementación)
+    + [Implementing the interactions between elements of the game](#gameitem-y-callbacks)
   * [Tests](#pruebas)
 <!-- TOC end -->
 <!-- TOC --><a name="práctica-2-parte-i-plantas-contra-zombis-refactored"></a>
@@ -442,12 +442,15 @@ that class to the `AVAILABLE_PLANTS` array of the factory class. No other code n
 by changed. Deleting a type of plant is also easy.
 
 <!-- TOC --><a name="implementación"></a>
-#### Implementation of the *Factory pattern*
+#### Implementing the *Factory pattern*
 
-The *Factory pattern* combines well with the *Command pattern* since:
+The *Command pattern* and the *Factory pattern* are eminently compatible since:
 
-- on executing the command `add plant col row` we can delegate the creation of the plant to the factory.
-- on executing `list` to find out what are the available plants, we can ask the factory.
+- on executing the command `add plant col row` from the `execute` of the `AddPlantCommand` we can
+  delegate the creation of the plant to the factory.
+- on executing `list` to find out what are the available plants, the `execute` method of the
+  `ListPlantsCommand` can call a plant factory method which returns the required information based
+  on the content of the `AVAILABLE_PLANTS` list.
 
 The skeleton code of the plant factory is as follows:
 
@@ -463,6 +466,7 @@ public class PlantFactory {
         // ...
     }
 
+        // probably safer to return a string (similar to the help message mechanism)
 	public static List<Plant> getAvailablePlants() {
 		return List.copyOf(AVAILABLE_PLANTS);
 	}
@@ -481,26 +485,12 @@ and an `AddZombieCommand` that adds a zombie in a position provided by the user,
 debugging purposes.
 
 <!-- TOC --><a name="gameitem-y-callbacks"></a>
-### GameItem y callbacks
+### Implementing the interactions between elements of the game
 
-Ya hemos resuelto la abstracción de los objetos, el almacenamiento y la creación. Ahora nos queda una cuestión muy importante y quizás la más compleja. Para ello debes entender bien el problema. 
-
-Al usar la clase abstracta `GameObject`, una vez que un objeto se mete en el juego ya no sabemos qué clase de objeto es. Podríamos saberlo usando `instanceof` o `getClass()`, pero eso está **terminantemente prohibido** en la práctica.
-
-El problema es el siguiente: cuando un `Zombie` o un `Peashooter` quiere atacar algo no sabemos si en una casilla adyacente hay una *planta* o `Zombie`.
-
-Para resolver este problema vamos a hacer lo siguiente. En primer lugar vamos a usar un interfaz `GameItem` para encapsular los métodos relacionados con las interacciones / acciones dentro del juego. La clase `GameObject` implementará dicho interfaz. El objetivo es que todos los objetos del juego deben tener la posibilidad de interactuar entre ellos.
-
-```java
-public interface GameItem {
-	boolean receiveZombieAttack(int damage);
-
-    void kill();
-    // ...
-}
-```
-
-Las colisiones se podrían comprobar desde `Game`, desde los `GameObject`. Como `Zombie` es el único elemento que se mueve, su método `update()` se podría implementar de la siguiente manera:
+We now turn our attention to the interaction between different elements of the game. The `GameItem`
+interface implemented by the `GameObject` class contains the methods involved in such interactions.
+But how can we detect when interactions should take place and then execute them? First,
+we consider using the following code in the `update` method of the `Zombie` class:
 
 ```java
 public void update() {
@@ -513,11 +503,19 @@ public void update() {
 }
 ```
 
-Aunque te pueda parecer que el código es correcto (de hecho funciona), es un **ejemplo de mala aplicación de la programación orientada a objetos**.
+Though this code works, it is not object-oriented code since it breaks abstraction
+and encapsulation; notice that we would have to change the zombie code each time we
+introduce a new type of plant. Moreover, 
+**the use of `getClass` or `instanceof` is absolutely forbidden in the assignments
+and you will receive a mark of 0 points if you use it**
+since it is a way of avoiding the use of dynamic binding and, therefore, correct OOP.
 
-Este ejemplo de código, por un lado, rompe la abstracción y encapsulación (ha sido necesario crear un mutador `setAlive()`) y por otro, hace que el código sea poco mantenible porque tendremos que modificar el `Zombie` para cada nuevo tipo de planta.
-
-Otra opción que estaría igual de mal consiste en implementar métodos que simulen el comportamiento de `Object.getClass()` o del operador `instanceof` **para todos los objetos del juego**, por ejemplo `isSunflower()`:
+Another equally-poor attempt at a solution is to use a kind of DIY `getClass` or
+`instanceof`, by defining one method for each concrete subclass of `GameObject`,
+`isSunflower()`, `isPeashooter()`, etc. 
+and including an implementation of each of these methods in every such subclass,
+where each method returns true in the correponding subclass and false in the other
+subclasses.
 
 ```java
 public void update() {
@@ -530,17 +528,30 @@ public void update() {
 }
 ```
 
-Ambos ejemplos muestran uno de los errores habituales de la programación orientada a objetos:
+Clearly, adding a new type of plant in code using this kind of DIY `getClass` or
+`instanceof` would involve modifying all the concrete subclasses of `GameObject`.
+**Any solution using a DIY `getClass` or `instanceof` such as this is also absolutely
+forbidden and, again, you will receive a mark of 0 points if you use it.**
 
-1. Reidentificar el tipo del objeto que estamos procesando y 
-2. utilizar una instrucción condicional para aplicar un comportamiento u otro; 
+Both of these examples manifest a typical error of novice OO programmers:
+1. Obtain the actual type of the object being processed
+2. Use a conditional instruction to decide which behaviour to carry out.
+This approach also leads to giving responsibilities to classes (in this case the 
+`Zombie` class) to classes which should not have them, thereby making maintenance
+and evolution of the code much more difficult.
 
-Además, la clase `Zombie` está acumulando demasiadas responsabilidades que no debería tener.
-
-Lo que queremos es que *la funcionalidad esté en los propios objetos de juego*, para que sea fácil extenderla y modificarla sin afectar a otros objetos. Para ello vamos a usar el interfaz que veíamos arriba, de la siguiente manera:
-
+We require a solution in which each concrete subclass of `GameObject` is responsible
+for its own behaviour and for processing its own data, so that modifying or extending
+the code does not affect other classes. To that end, our next attempt is to use the
+`GameItem` interface as follows:
 
 ```java
+public interface GameItem {
+    boolean receiveZombieAttack(int damage);
+    // ...
+}
+```
+
 public void update() {
     //...
     GameObject other = game.getGameObjectInPosition(col, row);
@@ -551,12 +562,18 @@ public void update() {
 }
 ```
 
-Todos los objetos implementan `receiveZombieAttack(int damage)`, y es precisamente en ese método donde debemos implementar la lógica que gestiona un ataque zombie. Por ejemplo, el `receiveZombieAttack` de `Sunflower` le aplicaremos el daño que le inflije el zombie, pero en la clase `Zombie` no hacemos nada. 
+Each `GameObject` subclass contains a `receiveZombieAttack(int damage)` method
+which implements the behaviour of objects of that class when they are attacked by
+a zombie (in the zombie class, the method body is empty since zombies to not
+attack zombies). This solution is on the right track, in that each class is
+responsible for its own behaviour, but the method `getGameObjectInPosition`
+breaks encapsulation by returning an object that is the value of an attribute;
+if you return a pointer to private (mutable) data, clearly, it is no longer private.
 
-Esta solución es un comienzo ya que cada objeto gestiona las diferentes acciones del juego. El problema es que rompemos la encapsulación al devolver un objeto `GameObject` de `Game`. Aunque la clase `GameObject` implemente la interfaz `GameItem`, es recomendable, siempre que se pueda, interactuar utilizando los métodos definidos en la interfaz y no a través de una clase que implemente dicha interfaz. Cabe recordar que en Java sólo tenemos disponible herencia simple, **pero es posible implementar diferentes interfaces** que definen diferentes contratos dentro de la aplicación.
-
-Para solucionar el problema debemos hacer que dos objetos sólo se comuniquen a través del interfaz, que es una abstracción o contrato entre ellos. Para ello vamos a usar la siguiente estructura:
-
+To solve this problem, we can use a Java interface, in this case `GameItem`, as
+the declared type of the object returned by the `getGameItemInPosition` method,
+thereby restricting what the caller of the `getGameItemInPosition` method can do
+with this object.
 
 ```java
 public void update() {
@@ -569,10 +586,14 @@ public void update() {
 }
 ```
 
-El código es muy similar al anterior, pero usamos el *interface* como tipo de datos. Así ya **no rompemos la encapsulación**, ya que sólo se conectan con abstracciones.
+With the above code, the caller of the `getGameItemInPosition` method cannot do
+anything with the object returned by this method except call the
+`receiveZombieAttack` method on it, since this is the only method that is defined
+in the declared type (i.e. the `GameItem` interface).
 
-Por el momento, el interfaz `GameItem` es muy sencillo pero en las extensiones tendremos que añadir nuevos métodos para implementar interacciones más complejas.
-
+For the moment, the `GameItem` interface is very simple but as we extend the game
+we will need to add more methods in order to add other types of interactions 
+between the elements of the game. 
 
 <!-- TOC --><a name="pruebas"></a>
 ## Pruebas
