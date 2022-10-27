@@ -2,10 +2,10 @@
 - [Assignment 2 (Part I): Plants versus zombis refactored](#práctica-2-parte-i-plantas-contra-zombis-refactored)
   * [Introduction](#introducción)
   * [Refactorisation of the solution to the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
-    + [The command pattern](#patrón-command)
-    + [The reset command](#comando-reset)
-    + [The `Game` class and its different uses](#la-clase-game-y-sus-diferentes-usos)
-    + [Inheritance and Polymorphism](#herencia-y-polimorfismo)
+    + [Restructuring the code for parsing and executing the commands](#patrón-command)
+    + [Extending the functionality of the reset command](#comando-reset)
+    + [Using interfaces to define different perspectives on the Game class](#la-clase-game-y-sus-diferentes-usos)
+    + [Restructuring the code for handling the elements of the game](#herencia-y-polimorfismo)
     + [The `GameObjectContainer` class](#gameobjectcontainer)
     + [The factory pattern](#patrón-factory)
       - [Implementation](#implementación)
@@ -53,7 +53,7 @@ its functionality (i.e. without changing what it does).
 ## Refactoring the solution of the previous assignment
 
 <!-- TOC --><a name="patrón-command"></a>
-### The command pattern
+### Restructuring the code for parsing and executing the commands
 
 The first refactoring task concerns the commands, i.e. the different actions that the user of the 
 game can carry out, such as adding a plant, listing the available plants, asking for help, etc. Our
@@ -73,7 +73,7 @@ Our presentation of the Command pattern involves the following classes:
 - Specific command classes, in this assignment `AddPlantCommand`, `HelpCommand`, `ExitCommand` etc.,
   that are concrete subclasses of the abtract `Command` class.
 
-  Each concrete command subclass has (at least) the following methods:
+ Each concrete command subclass has (at least) the following methods:
 
     * a method, or methods, for parsing the words of the input string. In the code provided, the parsing is
       divided into two stages, implemented by the following two methods:
@@ -141,8 +141,8 @@ Command command = Command.parse(words);
 ```
 
 The key point is that the controller only handles abstract commands so it doesn't know which concrete 
-command is being executed nor exactly what this concrete command does. This is the dynamic-binding
-mechanism that allows us to easily add new specific commands.
+command is being created and executed nor exactly what this concrete command does. This is the
+dynamic-binding mechanism that allows us to easily add new specific commands.
 
 The **`parse(String[])`** method is a static method of the `Command` class that is responsible
 for finding which
@@ -214,7 +214,7 @@ implementation of the **`create(String[])`** method contained in the `Command` c
 implementation is only valid for classes that represent commands with no parameters.
 
 <!-- TOC --><a name="comando-reset"></a>
-### The Reset Command
+### Extending the functionality of the reset command
 
 We now modify the behaviour of the reset command of the previous assignment
 so that the user can choose to perform a reset with, or without, changing the level and the seed. Enabling
@@ -225,7 +225,7 @@ the same type and the same order as the ones used when starting the game. In the
 also the seed of the `Random` object must be reset (or a new `Random` object created).
 
 <!-- TOC --><a name="la-clase-game-y-sus-diferentes-usos"></a>
-### The Game y class and its different uses
+### Using interfaces to define different perspectives on the Game class
 
 The `Game` class is used by functionally different parts of the application: e.g. the `Controller`
 uses methods of the `Game` class for one purpose while the `GamePrinter` uses other methods of the
@@ -284,21 +284,37 @@ of `Game` (e.g. `GameObject` and `Command`) would be to use *inner classes* whic
 in TPII.
 
 <!-- TOC --><a name="herencia-y-polimorfismo"></a>
-### Herencia y polimorfismo
+### Restructuring the code for handling the elements of the game
 
-Con el patrón *Command* se busca poder introducir nuevos comandos sin cambiar el código del controlador. De la misma manera, queremos poder introducir nuevos objetos de juego sin tener que modificar el resto del código. La clave es que `Game` no maneje objetos específicos, sino que maneje objetos de una entidad abstracta que vamos a llamar `GameObject`. De esta entidad abstracta heredan el resto de objetos del juego. Como todos los elementos del juego van a ser `GameObject`s, compartirán la mayoría de atributos y métodos, y cada uno de los objetos concretos será el encargado de implementar su propio comportamiento. 
+In the same way as the code structure known as the *Command pattern* enables new commands to be introduced with
+minimal changes to the existing code (and, in particular, without changing the code of the controller),
+we would also like to be able to introduce new game objects with only minimal changes to the existing code.
+Just as the key to obtaining this desired property in the case of the command pattern was that the
+controller does not know which concrete command is being handled, the key to this in the case at hand
+is that the game does not know which specific element of the game is being handled. To that end, we
+define an abstract class called `GameObject` from which the concrete classes, each representing a different
+element of the game, then derive. Each concrete class inherits attributes and methods from the
+`GameObject` class and implements its own behaviour by
+ - providing implementations for the abstract methods that it inherits,
+ - possibly overwriting some of the non-abstract methods that it inherits,
+ - possibly adding new methods.
+To specify the attributes and methods of the `GameObject` class, we need to think about the behaviour that
+is common to all the elements of the game.
 
-Todos los `GameObject`s tienen una posición en el juego y una serie de métodos que llamamos durante cada ciclo del juego, por ejemplo, cuando necesitan hacer algo propio de ese objeto en un momento concreto de su ciclo de vida:
+All elements of the game have a position on the board so the `GameObject` will contain the corresponding
+attributes (or attribute, if you decide to define a `Position` class: if you do, make sure that it is
+immutable). A way of decomposing the behaviour of the elements of the game into methods that has proved
+useful is according to their life-cycle as follows:
 
-- `onEnter()`: Se llama cuando el objeto entra en el juego.
-- `update()`: Se llama en cada iteración del bucle de juego.
-- `onExit()`: Se llama cuando el objeto sale del juego, desapareciendo.
-- `isAlive()`: Es verdadero si el objeto sigue vivo, o falso, si hay que eliminarlo del juego.
+- `onEnter()`: invoked when this element enters the game
+- `update()`: invoked to evolve this element on each cycle of the game
+- `onExit()`: invoked when this element leaves or is removed from the game
+- `isAlive()`: indicates whether or not an object has any lives left, returning true if it does and false if it does not.
 
-Es normal que en objetos sencillos haya algunos de estos métodos vacíos o con funcionalidad trivial. 
+Note that in many simple objects these methods will be trivial and some will even be empty.
 
-A continuación se muestra el esqueleto del código de la clase `GameObject`. Más adelante describimos el uso del interfaz `GameItem` utilizado para representar acciones y operaciones dentro de los elementos que se encuentran en el tablero de juego.
-
+We now provide the skeleton of the code for the `GameObject` class. The `GameItem` interface implemented
+by this class is described below
 
 ```java
 public abstract class GameObject implements GameItem {
@@ -340,8 +356,6 @@ public abstract class GameObject implements GameItem {
     // ...
 }
 ```
-
-Este código lo tendrás que ir extendiendo y modificando a lo largo de las prácticas, para cada objeto del juego que hereda de la clase `GameObject`. 
 
 <!-- TOC --><a name="gameobjectcontainer"></a>
 ###  `GameObjectContainer`
