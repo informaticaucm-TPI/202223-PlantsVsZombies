@@ -98,7 +98,6 @@ Our presentation of the Command pattern involves the following classes:
 any semantics so, for example, the property of coordinates of being on or off the board should not be checked
 in the parsing phase.
 
-
 In the previous assignment, the parsing (i.e. finding out which command is to be executed and, when appropriate,
 with which parameter values) was carried out directly via a switch (or `if-else` ladder) contained in (or called
 from) the **Game loop** of the `run` method of the controller, with one case for each different command.
@@ -215,24 +214,32 @@ implementation of the **`create(String[])`** method contained in the `Command` c
 implementation is only valid for classes that represent commands with no parameters.
 
 <!-- TOC --><a name="comando-reset"></a>
-### Comando Reset
+### The Reset Command
 
-Vamos a modificar ligeramente el comportamiento del comando reset de la Práctica 1 con el objetivo de facilitar las pruebas, de modo que sea posible cambiar el nivel y la semilla de juego sin tener que parar y volver a arrancar el juego.
-
-El `ResetCommand` debe ser suficientemente flexible como para o bien recibir 0 parámetros y, por tanto, utilizar el nivel y semilla proporcionado como parámetro de línea de comandos, o bien recibir 2 parámetros (mismo tipo y orden que en la línea de comandos) que se utilizarán para reiniciar la partida.
-
-Ten en cuenta que al resetear el juego, también se debe reiniciar la instancia de `Random` que se utiliza para generar la partida.
+We now modify the behaviour of the reset command of the previous assignment
+so that the user can choose to perform a reset with, or without, changing the level and the seed. Enabling
+the level and the seed to be changed without restarting the game will facilitate testing.
+To that end, the parsing of the reset command should take into account that it can be called
+either without arguments or with two arguments where, in the latter case, the arguments have
+the same type and the same order as the ones used when starting the game. In the latter case
+also the seed of the `Random` object must be reset (or a new `Random` object created).
 
 <!-- TOC --><a name="la-clase-game-y-sus-diferentes-usos"></a>
-### La clase Game y sus diferentes usos
+### The Game y class and its different uses
 
-La clase `Game` se utiliza en diferentes partes de la aplicación: `Controller`, `GamePrinter`, etc. con diferentes objetivos. Hasta ahora, si implementamos un nuevo método `Game` para que pueda ser utilizado en una parte específica de la aplicación (en especial si es público), queda a disposición del resto de la aplicación.
+The `Game` class is used by functionally different parts of the application: e.g. the `Controller`
+uses methods of the `Game` class for one purpose while the `GamePrinter` uses other methods of the
+`Game` class for a different purpose. However, currently, all of the methods of the `Game` are
+visible and available to all parts of the application. One way of limiting this *coupling* while
+at the same
+time specifying more clearly the dependencies between different parts of the application, without
+breaking the `Game` class into smaller classes, is to use the Java `interface` construct[^3]. The
+idea is to divide the `Game` functionality into separate packets, each containing the methods used
+by a different part of the application, and then declare each such packet in a different interface.
+Here, we define two such interfaces:
 
-Esta situación nos puede inducir a no tener una separación clara en la lógica de nuestra aplicación ya que desde cualquier parte de la aplicación podemos llamar a los métodos de `Game`. Para evitar este problema y limitar el *acoplamiento* en nuestro código, podemos hacer uso de las `interface` de Java.
-
-Mediante las *Java interface* podemos declarar de manera específica las dependencias / necesidades de una parte de nuestro código. En nuestro vamos a definir dos interfaces:
-
-- `GameStatus`: Incluirá todos los métodos que necesita `GamePrinter` para "conocer" el estado del mundo y poder hacer su trabajo.
+- `GameStatus`: includes all the method used by the `GamePrinter` to find out about the state of
+the game
 
 ```java
 public interface GameStatus {
@@ -241,7 +248,8 @@ public interface GameStatus {
 }
 ```
 
-- `GameWorld`: Incluirá todos los métodos que necesitan los comandos y los objetos del juego (plantas, zombies, etc.), para saber qué pasa en el *mundo del juego*. Esta es una interfaz privilegiada que permite poder realizar acciones en el juego.
+- `GameWorld`: includes all the methods used by the commands and the game objects to modify
+the state of the game.
 
 ```java
 public interface GameWorld {
@@ -258,7 +266,8 @@ public interface GameWorld {
 }
 ```
 
-Así, `Game` implementará estas dos interfaces diferenciadas [^3].
+If the `Game` class implements both of these interfaces then, if required, the type of objects of
+class `Game` can be declared to be either one of these interfaces.
 
 ```java
 public class Game implements GameStatus, GameWorld {
@@ -270,8 +279,9 @@ public class Game implements GameStatus, GameWorld {
     //...
 }
 ```
-
-[^3]: Una manera más adecuada para que los métodos de `GameWorld`, que son privilegiados, no fueran visibles más allá de los colaboradores más cercanos de `Game` (e.g. `GameObject` y `Command`) sería utilizar utilizar *clases internas* como verás en TP II.
+[^3]: Another way of ensuring that any state-changing methods are only visible to close collaborators
+of `Game` (e.g. `GameObject` and `Command`) would be to use *inner classes* which will be presented
+in TPII.
 
 <!-- TOC --><a name="herencia-y-polimorfismo"></a>
 ### Herencia y polimorfismo
