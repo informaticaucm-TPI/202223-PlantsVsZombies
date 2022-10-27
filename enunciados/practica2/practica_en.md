@@ -41,7 +41,7 @@ the different creatures appearing in the game, among other benefits, avoiding th
 that occurred in the previous assignment. This inheritance hierarchy will also enable us to use a
 single data structure to store the state of the game, instead of using a different list for each type
 of element,
-see the section [*Restructuring the code for handling the elements of the game*](#patrón-command)
+see the section [*Restructuring the code for handling the elements of the game*](#herencia-y-polimorfismo)
 
 - In *Part II* of Assignment 2, we extend the game by adding new commands and new game objects. Thanks
 to the structure introduced in the refactoring of part I, the extensions of part II can be carried out
