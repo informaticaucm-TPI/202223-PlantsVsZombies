@@ -89,7 +89,7 @@ Our presentation of the Command pattern involves the following classes:
       command arguments in attributes.
 
    * `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
-     The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
+     The explanation of why the type `GameWorld` is used instead of the type `Game` is given below.
 
 - The `Controller` class: the controller class contains much less code then in the previous assignment since
   a large part of its functionality is now delegated to the specific command classes, as explained below.
@@ -202,8 +202,8 @@ public class HelpCommand extends Command {
 
 As already stated, the specific command classes inherit from the `Command` class and must
 implement the abstract `execute` method. This method executes the action associated to
-the corresponding command by simply calling a method of the game (actually by calling a method
-of the `GameWorld` that we will explain later). The `execute` method returns a value of type
+the corresponding command by simply calling a method of the game (via the type `GameWorld`
+as explained below). The `execute` method returns a value of type
 `ExecutionResult` that indicates whether the command succeeded or not, the error message if
 necessary, and whether or not to print the board and the game-state information.
 `ExecutionResult` is a [Java Record](https://www.geeksforgeeks.org/what-are-java-records-and-how-to-use-them-alongside-constructors-and-methods/),
