@@ -25,13 +25,6 @@
 In this assignment we apply the mechanisms offered by OOP to improve and extend the code developed
 in the previous assignment in the following ways:
 
-   First, as explained in Section~\ref{sec:pr2:refactoring}, we refactor\footnote{Refactoring
-   means changing the structure of code (to improve it, presumably) without changing what it does.}
-   the code of the previous assignment,
-   removing some code from the controller \textsf{run} method and distributing its functionality
-   among a set of classes. This involves applying what is known as the \emph{Command pattern} in
-   combination with the \emph{Factory pattern}.
-
 - In *Part I* of Assignment 2, we refactor [^1] the code of [Assignment 1](../practica1/practica1_en.md)
 in order to prepare it for the extensions to be made in *Part II*. Note that
 since this part of the assignment consists only of refactoring, the resulting implementation should
