@@ -7,7 +7,7 @@
     + [Using interfaces to define different perspectives on the `Game` class](#la-clase-game-y-sus-diferentes-usos)
     + [Restructuring the code responsible for handling the elements of the game](#herencia-y-polimorfismo)
     + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
-    + [The factory pattern](#patrón-factory)
+    + [Encapsulating the object-creation logic](#patrón-factory)
       - [Implementation](#implementación)
     + [GameItem y callbacks](#gameitem-y-callbacks)
   * [Tests](#pruebas)
