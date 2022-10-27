@@ -37,9 +37,9 @@ method of the previous assignment and distributing its functionality among a set
 
     * The second inheritance hierarchy will be used to organise the game objects which represent
 the different creatures appearing in the game, thereby avoiding a lot of repetition of code that was
-used in the previous assignment. This inheritance hierarchy will also enable us to use a sn
+used in the previous assignment. This inheritance hierarchy will also enable us to use a
 single data structure to store the state of the game, instead of using a different list for each type
-of game objects.
+of game object.
 
 - In *Part II* of Assignment 2, we extend the game by adding new commands and new game objects. Thanks
 to the structure introduced in the refactoring of part I, the extensions of part II can be carried out
@@ -60,7 +60,7 @@ game can carry out, such as adding a plant, listing the available plants, asking
 refactoring objective is to structure the code in such a way as to facilitate the addition of new
 commands (or the deletion of old ones). As one would expect, this is a very well-known problem
 in OOP which has solutions that are very well tried and tested, so we do not need to invent our own.
-The solution we will use is a variant of the *Command design pattern*[^2], one of the twenty-three
+The solution we will use is a variant of the *Command design pattern*, one of the twenty-three
 software patterns presented in the foundational software patterns book "Design Patterns: Elements of
 Reusable Object-Oriented Software" first published in 1994. The general idea of the command
 pattern is to encapsulate each command in its own class.
@@ -91,7 +91,7 @@ Each concrete command subclass has (at least) the following methods:
     - `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
       The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
 
-* The `Controller` class: the controller class contains much less code then in the previous assignment since
+- The `Controller` class: the controller class contains much less code then in the previous assignment since
   a large part of its functionality is now delegated to the specific command classes, as explained below.
 
 [^2]: Strictly speaking, the parsing phase should only check properties of the input data that do not involve
