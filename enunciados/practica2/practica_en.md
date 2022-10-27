@@ -97,7 +97,7 @@ Each concrete command subclass has (at least) the following methods:
 
 [^2]: Strictly speaking, the parsing phase should only check properties of the input data that do not involve
 any semantics so, for example, the property of coordinates of being on or off the board should not be checked
-in the parsing phase.
+in this phase.
 
 In the previous assignment, to know which command was executed, the **Game loop** implemented using the `run` 
 method of the controller contained a switch (or a series of nested if's) whose options corresponded to 
