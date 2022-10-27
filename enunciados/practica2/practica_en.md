@@ -297,9 +297,11 @@ is that the game does not know which specific element of the game is being handl
 define an abstract class called `GameObject` from which the concrete classes, each representing a different
 element of the game, then derive. Each concrete class inherits attributes and methods from the
 `GameObject` class and implements its own behaviour by
+
  - providing implementations for the abstract methods that it inherits,
  - possibly overwriting some of the non-abstract methods that it inherits,
  - possibly adding new methods.
+ - 
 To specify the attributes and methods of the `GameObject` class, we need to think about the behaviour that
 is common to all the elements of the game.
 
