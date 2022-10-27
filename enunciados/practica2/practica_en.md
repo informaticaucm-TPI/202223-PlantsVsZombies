@@ -439,7 +439,7 @@ With the decoupling of the object-creation logic from the game logic and the com
 logic that the *Factory pattern* provides, adding a new type of plant is as simple as
 adding a new type of command: simply create the new class and then add an object of
 that class to the `AVAILABLE_PLANTS` array of the factory class. No other code need
-by changed. Deleting a type of plant is even easier.
+be changed. Deleting a type of plant is even easier.
 
 <!-- TOC --><a name="implementación"></a>
 #### Implementación
