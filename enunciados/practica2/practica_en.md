@@ -1,7 +1,7 @@
 !-- TOC start -->
 - [Assignment 2 (Part I): Plants versus zombis refactored](#práctica-2-parte-i-plantas-contra-zombis-refactored)
   * [Introduction](#introducción)
-  * [Refactorising the solution of the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
+  * [Refactoring the solution of the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
     + [Restructuring the code responsible for parsing and executing the commands](#patrón-command)
     + [Extending the functionality of the reset command](#comando-reset)
     + [Using interfaces to define different perspectives on the `Game` class](#la-clase-game-y-sus-diferentes-usos)
