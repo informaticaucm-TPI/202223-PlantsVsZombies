@@ -439,14 +439,17 @@ With the decoupling of the object-creation logic from the game logic and the com
 logic that the *Factory pattern* provides, adding a new type of plant is as simple as
 adding a new type of command: simply create the new class and then add an object of
 that class to the `AVAILABLE_PLANTS` array of the factory class. No other code need
-be changed. Deleting a type of plant is even easier.
+by changed. Deleting a type of plant is also easy.
 
 <!-- TOC --><a name="implementación"></a>
-#### Implementación
+#### Implementation of the *Factory pattern*
 
-En patrón *Factory* se combina muy bien con el patrón *Command*, ya que:
-- Cuando ejecutamos un comando `add plant col row` podemos delegar la creación de la planta a la factoría.
-- Cuando ejecutamos un comando `list` para saber cuáles son las plantas disponibles, podemos preguntar a la factoría qué  `AVAILABLE_PLANTS` tiene. El siguiente código muestra el esqueleto de la factoría:
+The *Factory pattern* combines well with the *Command pattern* since:
+
+- on executing the command `add plant col row` we can delegate the creation of the plant to the factory.
+- on executing `list` to find out what are the available plants, we can ask the factory.
+
+The skeleton code of the plant factory is as follows:
 
 ```java
 public class PlantFactory {
@@ -461,17 +464,21 @@ public class PlantFactory {
     }
 
 	public static List<Plant> getAvailablePlants() {
-		return Collections.unmodifiableList(AVAILABLE_PLANTS);
+		return List.copyOf(AVAILABLE_PLANTS);
 	}
     // ...
 }
 ```
-El método `getAvailablePlants()` lo usará el comando `ListPlantsCommand` para mostrar la información de las plantas disponibles.
 
-En la primera versión de la práctica sólo teníamos dos tipos de plantas y un tipo de zombi, pero nuestro objetivo es poder extenderla de manera sencilla incorporando nuevos objetos de juego con diferentes características.
+The `getAvailablePlants()` method will be called from the `execute` method of the `ListPlantsCommand`.
 
-Aunque para la *parte I* no es necesario, también puedes crear una `ZombieFactory` para utilizarla en `ZombieManager` y en un posible `AddZombieCommand`. Este comando te puede ser de utilidad para depurar, ya que además del comportamiento aleatorio de la Práctica 1, también podrás colocar los zombis a tu antojo.
+In the previous assignment, we only had two types of plants and one type of zombie but in Part II
+of this assignment we will add new types of plants and zombies, each with its own characteristics
+and behaviour.
 
+Finally, you may also wish to create a `ZombieFactory` class, to be used by the `ZombieManager` class,
+and an `AddZombieCommand` that adds a zombie in a position provided by the user, to be used for
+debugging purposes.
 
 <!-- TOC --><a name="gameitem-y-callbacks"></a>
 ### GameItem y callbacks
