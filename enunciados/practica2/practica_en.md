@@ -2,10 +2,10 @@
 - [Assignment 2 (Part I): Plants versus zombis refactored](#práctica-2-parte-i-plantas-contra-zombis-refactored)
   * [Introduction](#introducción)
   * [Refactorising the solution of the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
-    + [Restructuring the code for parsing and executing the commands](#patrón-command)
+    + [Restructuring the code responsible for parsing and executing the commands](#patrón-command)
     + [Extending the functionality of the reset command](#comando-reset)
     + [Using interfaces to define different perspectives on the `Game` class](#la-clase-game-y-sus-diferentes-usos)
-    + [Restructuring the code for handling the elements of the game](#herencia-y-polimorfismo)
+    + [Restructuring the code responsible for handling the elements of the game](#herencia-y-polimorfismo)
     + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
     + [The factory pattern](#patrón-factory)
       - [Implementation](#implementación)
@@ -55,7 +55,7 @@ its functionality (i.e. without changing what it does).
 ## Refactoring the solution of the previous assignment
 
 <!-- TOC --><a name="patrón-command"></a>
-### Restructuring the code for parsing and executing the commands
+### Restructuring the code responsible for parsing and executing the commands
 
 The first refactoring task concerns the commands, i.e. the different actions that the user of the 
 game can carry out, such as adding a plant, listing the available plants, asking for help, etc. Our
@@ -286,7 +286,7 @@ of `Game` (e.g. `GameObject` and `Command`) would be to use *inner classes* whic
 in TPII.
 
 <!-- TOC --><a name="herencia-y-polimorfismo"></a>
-### Restructuring the code for handling the game elements
+### Restructuring the code responsible for handling the game elements
 
 In the same way as the code structure known as the *Command pattern* enables new commands to be introduced with
 minimal changes to the existing code (and, in particular, without changing the code of the controller),
