@@ -8,7 +8,7 @@
     + [Restructuring the code responsible for handling the elements of the game](#herencia-y-polimorfismo)
     + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
     + [Encapsulating the object-creation logic](#patrón-factory)
-      - [Implementation](#implementación)
+      - [Implementation of the *Factory pattern*](#implementación)
     + [GameItem y callbacks](#gameitem-y-callbacks)
   * [Tests](#pruebas)
 <!-- TOC end -->
