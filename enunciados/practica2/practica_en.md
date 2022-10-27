@@ -33,13 +33,15 @@ refactoring consists of creating the following two inheritance hierarchies.
 
     * The first inheritance hierarchy concerns the treatment of the commands introduced by the user
 at the keyboard and will be constructed by removing some code from the controller `run`
-method of the previous assignment and distributing its functionality among a set of classes.
+method of the previous assignment and distributing its functionality among a set of classes,
+see the section [*Restructuring the code for parsing and executing the commands*](#patrón-command)
 
-    * The second inheritance hierarchy will be used to organise the game objects which represent
-the different creatures appearing in the game, thereby the repetition of code that occurred
-in the previous assignment. This inheritance hierarchy will also enable us to use a
+    * The second inheritance hierarchy will be used to organise the classes that represent
+the different creatures appearing in the game, among other benefits, avoiding the repetition of code
+that occurred in the previous assignment. This inheritance hierarchy will also enable us to use a
 single data structure to store the state of the game, instead of using a different list for each type
-of game object.
+of element,
+see the section [*Restructuring the code for handling the elements of the game*](#patrón-command)
 
 - In *Part II* of Assignment 2, we extend the game by adding new commands and new game objects. Thanks
 to the structure introduced in the refactoring of part I, the extensions of part II can be carried out
