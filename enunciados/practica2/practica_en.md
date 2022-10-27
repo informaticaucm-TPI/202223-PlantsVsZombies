@@ -75,14 +75,15 @@ that are concrete subclasses of the abtract `Command` class.
 
 Each concrete command subclass has (at least) the following methods:
 
-    * a method or methods for parsing the words of the input string. In the code provided, the parsing is
-      divided into two stages, implemented by the following two methods:
+    * One or more methods for parsing (i.e. reading them and creating the corresponding internal representation)
+      the words of the input string. In the code provided, the parsing is divided into two stages, implemented
+      by the following two methods:
 
-          - `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
+        1. `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
       to the name of the command in question, returning the value `null` if it does not and the value returned
       by the `create` method if it does.
 
-          - `create(String[])`: parses the remaining words of the input string (contained in the array of strings
+        2. `create(String[])`: parses the remaining words of the input string (contained in the array of strings
       passed via its only parameter), if there are any, checking whether they correspond to valid command
       arguments [^2]. If they do, it creates and returns an object of the same command subclass, which stores
       the values of the parsed command arguments in attributes, and if they do not, it prints an error message
