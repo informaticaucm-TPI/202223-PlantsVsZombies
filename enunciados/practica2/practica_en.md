@@ -550,7 +550,6 @@ public interface GameItem {
     boolean receiveZombieAttack(int damage);
     // ...
 }
-```
 
 public void update() {
     //...
