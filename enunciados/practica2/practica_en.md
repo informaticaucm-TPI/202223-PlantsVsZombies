@@ -144,7 +144,7 @@ The key point is that the controller only handles abstract commands so it doesn'
 command is being executed nor exactly what this concrete command does. This is the dynamic-binding
 mechanism that allows us to easily add new specific commands.
 
-The **`parse(String[])`** method is a static method of the `Command` class that is responsible for
+The **`parse(String[])`** method is a static method of the `Command` class that is responsible
 for finding which
 specific command corresponds to the user's input. It does so by calling the `matchCommand(String)` on an
 object of each specific command class in turn (it loops through the `AVAILABLE_COMMANDS` list, which
@@ -175,7 +175,7 @@ public abstract class Command {
 ```
 
 After receiving a `Command` object from the `parse` method, the controller simply asks the
-game to execute the cooresponding action.
+game to execute the corresponding action.
 
 All concrete commands have a series of details: `name`, `shortcut`, `detail`, etc. For example the
 specific command  `HelpCommand` has the following code:
