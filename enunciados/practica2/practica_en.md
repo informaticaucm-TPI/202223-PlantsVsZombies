@@ -75,20 +75,20 @@ that are concrete subclasses of the abtract `Command` class.
 
 Each concrete command subclass has (at least) the following methods:
 
-    - a method or methods for parsing the words of the input string. In the code provided, the parsing is
+    * a method or methods for parsing the words of the input string. In the code provided, the parsing is
       divided into two stages, implemented by the following two methods:
 
-      * `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
+          - `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
       to the name of the command in question, returning the value `null` if it does not and the value returned
       by the `create` method if it does.
 
-      * `create(String[])`: parses the remaining words of the input string (contained in the array of strings
+          - `create(String[])`: parses the remaining words of the input string (contained in the array of strings
       passed via its only parameter), if there are any, checking whether they correspond to valid command
       arguments [^2]. If they do, it creates and returns an object of the same command subclass, which stores
       the values of the parsed command arguments in attributes, and if they do not, it prints an error message
       and returns `null`.
 
-    - `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
+    * `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
       The explanation of why the class `GameWorld` is used instead of the class `Game` is given below.
 
 - The `Controller` class: the controller class contains much less code then in the previous assignment since
