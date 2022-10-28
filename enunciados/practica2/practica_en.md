@@ -533,10 +533,12 @@ Clearly, adding a new type of plant in code using this kind of DIY `getClass` or
 forbidden and, again, you will receive a mark of 0 points if you use it.**
 
 Both of these examples manifest a typical error of novice OO programmers:
+
 1. Obtain the actual type of the object being processed (using `getClass`, `instanceof`
    or some DIY version of these).
 2. Use a conditional instruction to decide which behaviour to carry out
    in function of the actual type.
+   
 This incorrect approach also leads to giving responsibilities to classes (in this case 
 the `Zombie` class) which should not have them, thereby making maintenance
 and evolution of the code much more difficult.
