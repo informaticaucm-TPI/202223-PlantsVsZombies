@@ -77,18 +77,18 @@ Our presentation of the *Command pattern* involves the following classes:
 
  Each concrete command subclass has (at least) the following methods:
 
-    * a method, or methods, for parsing the words of the input string. In the code provided, the parsing is
-      divided into two stages, implemented by the following two methods:
+   * a method, or methods, for parsing the words of the input string. In the code provided, the parsing is
+     divided into two stages, implemented by the following two methods:
 
-      `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
-      to the name of the command in question, returning the value `null` if it does not and the value returned
-      by the `create` method if it does.
+     `matchCommand(String)`: parses the first word of the input string, checking whether it corresponds
+     to the name of the command in question, returning the value `null` if it does not and the value returned
+     by the `create` method if it does.
 
-      `create(String[])`: parses the remaining words of the input string (contained in the array of strings
-      passed via its only parameter), if there are any, checking whether they correspond to valid command
-      arguments [^2]. If they do not, it prints an error message and returns `null` and if they do, it
-      creates and returns an object of the same command subclass, which stores the values of the parsed
-      command arguments in attributes.
+     `create(String[])`: parses the remaining words of the input string (contained in the array of strings
+     passed via its only parameter), if there are any, checking whether they correspond to valid command
+     arguments [^2]. If they do not, it prints an error message and returns `null` and if they do, it
+     creates and returns an object of the same command subclass, which stores the values of the parsed
+     command arguments in attributes.
 
    * `execute(GameWorld)`: executes the action of the command, in most cases modifying the state of the game
      The explanation of why the type `GameWorld` is used instead of the type `Game` is given below.
