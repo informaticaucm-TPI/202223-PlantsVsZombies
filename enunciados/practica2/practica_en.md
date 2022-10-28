@@ -1,4 +1,4 @@
-!-- TOC start -->
+<!-- TOC start -->
 - [Assignment 2 (Part I): Plants versus zombis refactored](#práctica-2-parte-i-plantas-contra-zombis-refactored)
   * [Introduction](#introducción)
   * [Refactoring the solution of the previous assignment](#refactorización-de-la-solución-de-la-práctica-anterior)
