@@ -97,8 +97,8 @@ Our presentation of the *Command pattern* involves the following classes:
   a large part of its functionality is now delegated to the specific command classes, as explained below.
 
 [^2]: Strictly speaking, the parsing phase should only check properties of the input data that do not involve
-any semantics so, for example, the property of coordinates of being on or off the board should not be checked
-in the parsing phase.
+any semantics so, for example, the property of whether a tile is occupied or not should not be checked
+in this phase.
 
 In the previous assignment, the parsing (i.e. finding out which command is to be executed and, when appropriate,
 with which parameter values) was carried out directly via a switch (or `if-else` ladder) contained in (or called
