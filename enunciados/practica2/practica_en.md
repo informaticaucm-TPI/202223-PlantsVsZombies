@@ -495,7 +495,7 @@ we consider using the following code in the `update` method of the `Zombie` clas
 public void update() {
     //...
     GameObject other = game.getGameObjectInPosition(col, row);
-    if(other != null && other.getClass() == "Sunflower") {  
+    if(other != null && other.getClass() == Sunflower.class) {  
         ((Sunflower) other).setAlive(false);
     }
     //...
