@@ -485,11 +485,10 @@ and an `AddZombieCommand` that adds a zombie in a position provided by the user,
 debugging purposes.
 
 <!-- TOC --><a name="gameitem-y-callbacks"></a>
-### Implementing the interactions between elements of the game
+### Interactions between elements of the game.
 
-We now turn our attention to the interaction between different elements of the game. The `GameItem`
-interface implemented by the `GameObject` class contains the methods involved in such interactions.
-But how can we detect when interactions should take place and then execute them? First,
+We now turn our attention to the interaction between different elements of the game.
+How can we detect when interactions should take place and then execute them? First,
 we consider using the following code in the `update` method of the `Zombie` class:
 
 ```java
@@ -503,11 +502,11 @@ public void update() {
 }
 ```
 
-Though this code works, it is not object-oriented code since it breaks abstraction
+Though this code works, it is not object-oriented since it breaks abstraction
 and encapsulation; notice that we would have to change the zombie code each time we
 introduce a new type of plant. Moreover, 
 **the use of `getClass` or `instanceof` is absolutely forbidden in the assignments
-and you will receive a mark of 0 points if you use it**
+and you will receive a mark of 0 points if you use either of them**
 since it is a way of avoiding the use of dynamic binding and, therefore, correct OOP.
 
 Another equally-poor attempt at a solution is to use a kind of DIY `getClass` or
@@ -534,23 +533,20 @@ Clearly, adding a new type of plant in code using this kind of DIY `getClass` or
 forbidden and, again, you will receive a mark of 0 points if you use it.**
 
 Both of these examples manifest a typical error of novice OO programmers:
-1. Obtain the actual type of the object being processed
-2. Use a conditional instruction to decide which behaviour to carry out.
-This approach also leads to giving responsibilities to classes (in this case the 
-`Zombie` class) to classes which should not have them, thereby making maintenance
+1. Obtain the actual type of the object being processed (using `getClass`, `instanceof`
+   or some DIY version of these).
+2. Use a conditional instruction to decide which behaviour to carry out
+   in function of the actual type.
+This incorrect approach also leads to giving responsibilities to classes (in this case 
+the `Zombie` class) which should not have them, thereby making maintenance
 and evolution of the code much more difficult.
 
 We require a solution in which each concrete subclass of `GameObject` is responsible
 for its own behaviour and for processing its own data, so that modifying or extending
-the code does not affect other classes. To that end, our next attempt is to use the
-`GameItem` interface as follows:
+the this behaviour does not require any modification to other classes. To that end,
+in our next attempt we define a method of the `Zombie` class called `receiveZombieAttack`:
 
 ```java
-public interface GameItem {
-    boolean receiveZombieAttack(int damage);
-    // ...
-}
-
 public void update() {
     //...
     GameObject other = game.getGameObjectInPosition(col, row);
@@ -572,16 +568,30 @@ if you return a pointer to private (mutable) data, clearly, it is no longer priv
 To solve this problem, we can use a Java interface, in this case `GameItem`, as
 the declared type of the object returned by the `getGameItemInPosition` method,
 thereby restricting what the caller of the `getGameItemInPosition` method can do
-with this object.
+with this object. The `GameItem` interface is then implemented by the `GameObject`
+class.
 
 ```java
-public void update() {
+public interface GameItem {
+    boolean receiveZombieAttack(int damage);
+    // ...
+}
+
+public class GameObject implements GameItem {
+    // ...
+}
+
+public class Zombie extends GameObject {
     //...
-    GameItem item = game.getGameItemInPosition(col, row);
-    if(item != null ) {  
-        item.receiveZombieAttack(this.damage);
+
+    public void update() {
+        //...
+        GameItem item = game.getGameItemInPosition(col, row);
+        if(item != null ) {  
+            item.receiveZombieAttack(this.damage);
+        }
+        //...
     }
-    //...
 }
 ```
 
@@ -592,7 +602,7 @@ in the declared type (i.e. the `GameItem` interface).
 
 For the moment, the `GameItem` interface is very simple but as we extend our program
 we will need to add more methods to it in order to add other types of interactions 
-between different elements of the game. 
+between different elements of the game.
 
 <!-- TOC --><a name="pruebas"></a>
 ## Pruebas
