@@ -545,7 +545,7 @@ and evolution of the code much more difficult.
 
 We require a solution in which each concrete subclass of `GameObject` is responsible
 for its own behaviour and for processing its own data, so that modifying or extending
-the this behaviour does not require any modification to other classes. To that end,
+this behaviour does not require any modification to other classes. To that end,
 in our next attempt we define a method of the `Zombie` class called `receiveZombieAttack`:
 
 ```java
