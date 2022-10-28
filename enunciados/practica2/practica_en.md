@@ -9,7 +9,7 @@
     + [Delegating functionality of the `Game` to the `GameObjectContainer`](#gameobjectcontainer)
     + [Encapsulating the object-creation logic](#patrón-factory)
       - [Implementating the *Factory pattern*](#implementación)
-    + [Implementing the interactions between elements of the game](#gameitem-y-callbacks)
+    + [Interactions between elements of the game](#gameitem-y-callbacks)
   * [Tests](#pruebas)
 <!-- TOC end -->
 <!-- TOC --><a name="práctica-2-parte-i-plantas-contra-zombis-refactored"></a>
