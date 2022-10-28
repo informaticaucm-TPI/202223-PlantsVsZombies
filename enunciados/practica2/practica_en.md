@@ -20,7 +20,7 @@
 **Objective:** inheritance, polymorphism, abstract classes and interfaces
 
 <!-- TOC --><a name="introducción"></a>
-## Introducción
+## Introduction
 
 In this assignment we apply the mechanisms offered by OOP to improve and extend the code developed
 in the previous assignment in the following ways:
