@@ -609,31 +609,38 @@ between different elements of the game.
 <!-- TOC --><a name="pruebas"></a>
 ## Pruebas
 
-Recuerda que una vez terminada la refactorización, la práctica debe funcionar exactamente igual que en la versión anterior y debe pasar los mismos tests, aunque tendremos muchas más clases. 
+Recall that the functionality of the refactored code should be exactly the same as that of the original code,
+for which reason, the refactored code should pass exactly the same black-box (i.e. functional) system-level
+tests as the original code.
 
-Así, conseguimos dejar preparada la estructura para añadir fácilmente nuevos comandos y objetos de juego en la *Parte II*.
+To simplify the testing procedure, we are going to slightly "misuse" the [JUnit](https://junit.org/) support provided by
+Eclipse. JUnit is a widely-used unit-testing framework for Java applications.
 
-Para simplificar las pruebas, vamos a "abusar" del soporte de [JUnit](https://junit.org/) dentro de Eclipse para facilitar nuestras pruebas de comparación de la salida de nuestro programa. JUnit es un marco de trabajo para poder realizar pruebas automatizadas al código de tu aplicación Java. Seguramente verás como utilizar JUnit en otras asignaturas de la carrera.
+Together with the template for the solution of the assignment, we include the class `tp1.p2.PlantsVsZombiesTests`  which
+contains JUnit tests, one for each of the test cases of the previous assignment.
 
-Como parte de la plantilla de la práctica se incluye la clase `tp1.p2.PlantsVsZombiesTests` que es una clase de pruebas JUnit. Esta clase contiene una prueba para cada uno de los casos de prueba de la Práctica 1.
-
-Antes de poder ejecutar las pruebas que incluye, tenemos que añadir JUnit a nuestro proyecto. Para ello, tenemos que ir a las propiedades del proyecto *Project > Properties*, seleccionamos *Java Build Path* y vamos a la pestaña *Libraries*. Allí pulsamos en el botón **Add Library...**
+Before trying to execute the JUnit tests, you will need to add the JUnit libraries
+to your project by choosing *Project > Properties* on the Eclipse menu and then selecting *Java Build Path* and finally
+the *Libraries* tab. Next click on the **Add Library...** button.
 
 ![](./imgs/00-ProjectProjerties.jpg)
 
-En la nueva ventana seleccionamos *JUnit* y pulsamos en el botón *Finish* 
+In the new window, choose *JUnit* and click on the *Finish* button.
 
 ![](./imgs/01-AddJUnit.jpg)
 
-Al volver a la ventana de las propiedades del proyecto, pulsamos en el botón *Aply and Close*.
-
-Si lo hemos configurado correctamente, al pulsar con el botón derecho del ratón sobre el fichero `PlatsVsZombiesTests.java` e ir al menú *Run As*, debería de aparecer la opción **JUnit Test**.
+On returning to the project properties window, click on the button *Apply and Close*.
+Now that you have included the JUnit libraries, if you click with the right button on the file `PlatsVsZombiesTests.java`
+and then choose *Run As*, there should now be a new option available called **JUnit Test**.
 
 ![](./imgs/02-RunAsJUnitTest.jpg)
 
-Si ejecutamos las pruebas se mostrará una vista en Eclipse donde podremos ver el resultado de las pruebas, lanzar las que hayan fallado de manera individualizada o todas a la vez. **Recuerda** que utilizamos las pruebas JUnit simplemente para comparar la salida de tu programa con la salida esperada. Si quieres ver el detalle tendrás que aplicar el mismo procedimiento que en la Práctica 1.
+On choosing the JUnit Test option, Eclipse opens a window which allows us to choose which of the tests we want to execute and
+to then visualise the result of their exeuction. Note that the JUnit test-execution results simply tell us which of the tests
+passed and which failed where, in our case, a test fails if there is any difference between the output of the program and the
+expected output. To obtain more information about the failed tests in order to understand *why* a test failed, you will need
+to use the test procedure of the previous assignment. 
 
 ![](./imgs/03-JUnitFailed.jpg)
 
 ![](./imgs/04-JUnitPass.jpg)
-
