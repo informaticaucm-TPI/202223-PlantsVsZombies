@@ -307,8 +307,8 @@ is common to all the elements of the game.
 
 All elements of the game have a position on the board so the `GameObject` will contain the corresponding
 attributes (or attribute, if you decide to define a `Position` class: if you do, make sure that it is
-immutable). A way of decomposing the behaviour of the elements of the game into methods that has proved
-useful is according to their life-cycle as follows:
+immutable, using a Java Record would be a good way to do this). A way of decomposing the behaviour of the
+elements of the game into methods that has proved useful is according to their life-cycle as follows:
 
 - `onEnter()`: invoked when this element enters the game
 - `update()`: invoked to evolve this element on each cycle of the game
