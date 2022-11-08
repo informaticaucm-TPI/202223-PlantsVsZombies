@@ -260,6 +260,8 @@ Remaining zombies: 2
 Command > 
 [DEBUG] Executing: a p 1 0
 
+[ERROR] Error: Not enough suncoins
+
 Command > 
 [DEBUG] Executing: 
 
