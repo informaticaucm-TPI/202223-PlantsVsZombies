@@ -100,7 +100,7 @@ Command command = Command.parse(words);
 
 El punto clave es que el controlador sólo maneja comandos abstractos, por lo que no sabe qué comando concreto se ejecuta y qué es lo que hace exactamente el comando. Este es el mecanismo que nos permite añadir fácilmente nuevos comandos concretos.
 
-**El método `parse(String[])`** es un método estático de la clase `Command`, encargado de encontrar qué comando concreto corresponde a la entrada del usuario. Para ello la clase `Command`mantiene una lista `AVAILABLE_COMMANDS` con los comandos disponibles. Este método recorre la lista de comandos para determinar, llamando al método `matchCommand(String)` de cada comando, para averiguar a cuál corresponde la entrada del usuario. Cuando lo encuentra, procesa los parámetros (si los tiene), crea una instancia de ese mismo tipo de comando y lo devuelve al controlador. 
+**El método `parse(String[])`** es un método estático de la clase `Command`, encargado de encontrar qué comando concreto corresponde a la entrada del usuario. Para ello la clase `Command`mantiene una lista `AVAILABLE_COMMANDS` con los comandos disponibles. Este método recorre la lista de comandos para determinar, llamando al método `matchCommand(String)` de cada comando, a cuál corresponde la entrada del usuario. Cuando lo encuentra, procesa los parámetros (si los tiene), crea una instancia de ese mismo tipo de comando y lo devuelve al controlador.
 
 El esqueleto del código es este:
 ```java
@@ -125,7 +125,7 @@ public abstract class Command {
 
 El `Controller`, después de recibir un `Command`, simplemente le pedirá a `Game` que ejecute el comando.
 
-Todos los comandos tienen una serie de **detalles**: nombre, atajo, detalle, etc. Por ejemplo el comando concreto `HelpCommand:
+Todos los comandos tienen una serie de **detalles**: nombre, atajo, detalle, etc. Por ejemplo el comando concreto `HelpCommand`:
 
 ```java
 public class HelpCommand extends Command {
@@ -148,9 +148,9 @@ public class HelpCommand extends Command {
 
 Como puede apreciarse, todos los comandos heredan de la clase `Command`. La clase `Command` es abstracta, por lo que son los comandos concretos los que implementan la funcionalidad:
 
-- El método execute realiza la acción sobre el *game* (realmente un `GameWorld` que explicaremos más adelante) y devuelve un valor de tipo `ExecutionResult` que indica el resultado de la ejecución del comando: si ha tenido éxito o no, el mensaje de error si fuera necesario y si es necesario pintar el juego. `ExecutionResult` es un [Java Record](https://www.geeksforgeeks.org/what-are-java-records-and-how-to-use-them-alongside-constructors-and-methods/) que nos permite devolver múltiples valores desde un método en Java (como si fuera una tupla o conjunto de datos como los `struct` de C/C++).
+- El método execute realiza la acción sobre el *game* (realmente un `GameWorld` que explicaremos más adelante) y devuelve un valor de tipo `ExecutionResult` que indica el resultado de la ejecución del comando: si ha tenido éxito o no, el mensaje de error si fuera necesario y si es necesario pintar el juego. `ExecutionResult` es un [Java Record](https://www.geeksforgeeks.org/what-are-java-records-and-how-to-use-them-alongside-constructors-and-methods/), que nos permite devolver múltiples valores desde un método en Java (como si fuera una tupla o conjunto de datos como los `struct` de C/C++).
 
-- El método `create(String[])` devuelve una instancia del  comando concreto. Como cada comando procesa sus propios parámetros a sí mismo, este método devolverá `this` o creará una nueva instancia de la misma clase. En el caso de que el texto introducido por el usuario no corresponda con el comando, entonces el método `create(String[])` devolverá `null`.
+- El método `create(String[])` devuelve una instancia del comando concreto. Como cada comando procesa sus propios parámetros, este método devolverá `this` o creará una nueva instancia de la misma clase. En el caso de que los argumentos introducidos por el usuario no sean válidos para el comando, el método `create(String[])` devolverá `null`.
 
 <!-- TOC --><a name="comando-reset"></a>
 ### Comando Reset
@@ -309,7 +309,7 @@ En relación a la primera práctica, hay varios aspectos que van a cambiar en la
 
 El patrón *Factory* es otro de los patrones más utilizados. Al igual que con el patrón *Command*, no vamos a estudiar este patrón de manera rigurosa sino que vamos a adaptarlo a nuestras necesidades concretas.
 
-Una *Factoria* es *responsable de crear objetos evitando exponer la lógica de creación al cliente*. En la primera versión de la práctica, la lógica de creación de plantas está fuertemente acoplada con el controlador de la aplicación. La  forma de incorporar una nueva planta es la de incluir un nuevo bloque al switch o if's que tenemos en el método run. Seguramente tu código se parece a este:
+Una *factoría* es *responsable de crear objetos evitando exponer la lógica de creación al cliente*. En la primera versión de la práctica, la lógica de creación de plantas está fuertemente acoplada con el controlador de la aplicación. La  forma de incorporar una nueva planta es la de incluir un nuevo bloque al switch o if's que tenemos en el método run. Seguramente tu código se parece a este:
 
 ```java
   case "sunflower":
