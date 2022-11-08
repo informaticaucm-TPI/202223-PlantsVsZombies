@@ -7,11 +7,6 @@ import tp1.p2.view.Messages;
 
 public class NoneCommand extends Command {
 
-	public NoneCommand() {
-		// default command
-		super(true);
-	}
-
 	@Override
 	protected String getName() {
 		return Messages.COMMAND_NONE_NAME;
