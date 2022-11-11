@@ -16,4 +16,22 @@ public interface GameItem {
 	 */
 	boolean receiveZombieAttack(int damage);
 
+	/**
+	 * Receive a plant attack.
+	 * 
+	 * @param damage Received damage.
+	 * 
+	 * @return <code>true</code> if a plant has been attacked, <code>false</code>
+	 *         otherwise.
+	 */
+	boolean receivePlantAttack(int damage);
+
+	
+	/**
+	 * Try to catch a sun (if no other sun has been catched this cycle).
+	 * 
+	 * @return <code>true</code> if the sun has been catched, <code>false</code> otherwise.
+	 */
+	boolean catchObject();
+
 }

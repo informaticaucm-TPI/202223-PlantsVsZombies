@@ -22,7 +22,7 @@ public class GamePrinter {
 
 	private static final String EXTENDED_MARGIN = repeat(SPACE, MARGIN_SIZE+2);
 
-	private static final int CELL_SIZE = 8;
+	private static final int CELL_SIZE = 8+6;
 
 	private static final String CELL_BORDER = repeat(CELL_BORDER_CHAR, CELL_SIZE);
 

@@ -5,48 +5,47 @@ import static tp1.p2.view.Messages.error;
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.Plant;
-import tp1.p2.logic.gameobjects.PlantFactory;
+import tp1.p2.logic.gameobjects.Zombie;
+import tp1.p2.logic.gameobjects.ZombieFactory;
 import tp1.p2.view.Messages;
 
-public class AddPlantCommand extends Command implements Cloneable {
+public class AddZombieCommand extends Command {
+
+	private int zombieIdx;
 
 	private int col;
 
 	private int row;
 
-	private String plantName;
+	public AddZombieCommand() {
 
-	private boolean consumeCoins;
-
-	public AddPlantCommand() {
-		this(true);
 	}
 
-	public AddPlantCommand(boolean consumeCoins) {
-		this.consumeCoins = consumeCoins;
+	private AddZombieCommand(int zombieIdx, int col, int row) {
+		this.zombieIdx = zombieIdx;
+		this.col = col;
+		this.row = row;
 	}
 
 	@Override
 	protected String getName() {
-		return Messages.COMMAND_ADD_NAME;
+		return Messages.COMMAND_ADD_ZOMBIE_NAME;
 	}
 
 	@Override
 	protected String getShortcut() {
-		return Messages.COMMAND_ADD_SHORTCUT;
+		return Messages.COMMAND_ADD_ZOMBIE_SHORTCUT;
 	}
 
 	@Override
 	public String getDetails() {
-		return Messages.COMMAND_ADD_DETAILS;
+		return Messages.COMMAND_ADD_ZOMBIE_DETAILS;
 	}
 
 	@Override
 	public String getHelp() {
-		return Messages.COMMAND_ADD_HELP;
+		return Messages.COMMAND_ADD_ZOMBIE_HELP;
 	}
-
 
 	@Override
 	public ExecutionResult execute(GameWorld game) {
@@ -59,5 +58,3 @@ public class AddPlantCommand extends Command implements Cloneable {
 	}
 
 }
-
-

@@ -6,6 +6,12 @@
 
 En la P2 los objetos del juego se actualizan por orden de creación (el contenedor de objetos ha de encargarse de mantener ese orden). Por ejemplo, en un ciclo en el que un zombie pueda atacar a un girasol, el girasol generará soles si y sólo si ha sido creado en el mismo ciclo en el que apareció el zombie (porque las acciones del usuario son anteriores a las de la máquina) o en uno anterior.
 
+### PlantFactory#getAvailablePlants() vs PlantFactory#listPlants()
+
+En la plantilla que tenéis disponible hemos optado como decisión de diseño devolver una lista no modificable (Utilizando `[Collections#unmodifiableList(java.util.List)](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#unmodifiableList(java.util.List))`) para que podáis generar la salida desde el comando `ListPlantsCommand`.
+
+Otra opción podría ser implementar un método `PlantFactory#listPlants()` que se encargaría de generar directamente la cadena que se utiliza directamente en `ListPlantsCommand`. Esta solución tiene la ventaja de evitar potenciales problemas con los elementos de la lista (que sí que son modificables), pero tiene la desventaja de que le estamos asignando una responsabilidad adicional y específica del juego a la factoría.
+
 ## Práctica 1
 
 ### ¿Los Peashooter comienzan a disparar al entrar en juego?

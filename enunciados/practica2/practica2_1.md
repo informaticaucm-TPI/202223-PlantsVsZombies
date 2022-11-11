@@ -390,7 +390,7 @@ Las colisiones se podrían comprobar desde `Game`, desde los `GameObject`. Como 
 public void update() {
     //...
     GameObject other = game.getGameObjectInPosition(col, row);
-    if(other != null && other.getClass() == "Sunflower") {  
+    if(other != null && other.getClass().getName() == "Sunflower") { // ó other.getClass() == Sunflower.class
         ((Sunflower) other).setAlive(false);
     }
     //...
