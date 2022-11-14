@@ -4,13 +4,13 @@
   * [Introducing new game elements](#incorporación-de-nuevos-objetos-de-juego)
     + [The cherry bomb plant](#cherrybomb-plant)
     + [The wall-nut plant](#wall-nut-plant)
-    + [the buckethead zombie](#buckethead-zombie)
+    + [The buckethead zombie](#buckethead-zombie)
     + [The sporty zombie](#sporty-zombie)
     + [The explosive zombie](#explosive-zombie)
   * [Introducing new commands](#comandos)
     + [The `listzombies` command](#listzombiescommand)
-  * [The `cheatplant` ommand](#addplantcheatcommand)
-  * [the `addzombie` command](#addzombiecommand)
+    + [The `cheatplant` ommand](#addplantcheatcommand)
+    + [the `addzombie` command](#addzombiecommand)
 - [Changing the mechanism for obtaining suncoins](#cambiando-la-mecánica-para-conseguir-suncoins)
   * [Description](#detalles-de-la-mecánica)
   * [Implementation](#implementación-de-la-mecánica)
@@ -21,6 +21,7 @@
   * [The `GameAction` interface and the `ExplosionAction` class](#la-interfaz-gameactions-y-las-acciones-explosionaction)
 - [Tests](#pruebas)
 <!-- TOC end -->
+
 <!-- TOC --><a name="práctica-2-parte-ii-plantas-contra-zombis-extended"></a>
 # Assignment 2 (Part II): Plants versus Zombis Extended
 
