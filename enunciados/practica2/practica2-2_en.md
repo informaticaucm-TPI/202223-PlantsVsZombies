@@ -227,7 +227,7 @@ that the names of the different plants and zombies to be used in these parameter
 in the `Messages` class. In the final version of A2, you should implement both of these parsing tasks
 in the same way as the command name was parsed in the `Command` class; you should **not** use
 the code for the
-`getAvailablePlants` method provided in the template which returns a *weakly read-only* [^1] shallow
+`getAvailablePlants` method provided in the template, which returns a *weakly read-only* [^1] shallow
 copy of the list of available plants (using `Collections.unmodifiableList`, or the Java 9+ version,
 `List.copyOf`); see also the FAQ (in Spanish) regarding this point.
 
