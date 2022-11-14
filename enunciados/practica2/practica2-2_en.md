@@ -212,14 +212,14 @@ Explosive Zombie: speed='2', damage='1', endurance='5'
 <!-- TOC --><a name="addplantcheatcommand"></a>
 ### The `cheatplant` command
 
-This command (to be implemented via a class called `AddPlantCheatCommand`) is used to add a plant to
+This command (to be implemented via a class called `AddPlantDebugCommand`) is used to add a plant to
 the game, the difference with the `add` command being that it does not consume any suncoins. Similarly
 to the `add` command, use of this command causes the game to be updated.
 
 <!-- TOC --><a name="addzombiecommand"></a>
 ### The `addzombie` command
 
-This command (to be implemented via a class called `AddZombieCheatCommand`) is used to manually add a zombie
+This command (to be implemented via a class called `AddZombieDebugCommand`) is used to manually add a zombie
 of the specified type either on any free tile of the board or in the column where the zombies appear
 (column 8)
 
