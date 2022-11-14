@@ -2,23 +2,23 @@
 - [Assignment 2 (Part II): Plants versus Zombis Extended](#práctica-2-parte-ii-plantas-contra-zombis-extended)
 - [Basic extensions to the game](#extensiones-básicas-del-juego)
   * [Introducing new game elements](#incorporación-de-nuevos-objetos-de-juego)
-    + [CherryBomb plant](#cherrybomb-plant)
-    + [Wall-Nut plant](#wall-nut-plant)
-    + [BucketHead zombie](#buckethead-zombie)
-    + [Sporty zombie](#sporty-zombie)
-    + [Explosive zombie](#explosive-zombie)
-  * [Commands](#comandos)
-    + [ListZombiesCommand](#listzombiescommand)
-  * [AddPlantCheatCommand](#addplantcheatcommand)
-  * [AddZombieCommand](#addzombiecommand)
+    + [The cherry bomb plant](#cherrybomb-plant)
+    + [The wall-nut plant](#wall-nut-plant)
+    + [the buckethead zombie](#buckethead-zombie)
+    + [The sporty zombie](#sporty-zombie)
+    + [The explosive zombie](#explosive-zombie)
+  * [Introducing new commands](#comandos)
+    + [The `listzombies` command](#listzombiescommand)
+  * [The `cheatplant` ommand](#addplantcheatcommand)
+  * [the `addzombie` command](#addzombiecommand)
 - [Changing the mechanism for obtaining suncoins](#cambiando-la-mecánica-para-conseguir-suncoins)
   * [Description](#detalles-de-la-mecánica)
   * [Implementation](#implementación-de-la-mecánica)
 - [Implementation details](#detalles-de-implementación)
-    + [Static variables](#variables-estáticas)
+    + [The use of static variables](#variables-estáticas)
       - [Generated suns and caught suns](#soles-generados-y-soles-cogidos)
       - [CatchCommand](#catchcommand)
-  * [The `GameAction` interface and the ExplosionAction`](#la-interfaz-gameactions-y-las-acciones-explosionaction)
+  * [The `GameAction` interface and the `ExplosionAction` class](#la-interfaz-gameactions-y-las-acciones-explosionaction)
 - [Tests](#pruebas)
 <!-- TOC end -->
 <!-- TOC --><a name="práctica-2-parte-ii-plantas-contra-zombis-extended"></a>
@@ -116,7 +116,7 @@ Remaining zombies: 5
 
 
 <!-- TOC --><a name="cherrybomb-plant"></a>
-### Cherry bomb plant
+### The cherry bomb plant
 
 Two cycles after planting, this kamikaze plant (to be implemented by a class called
 `CherryBomb`) explodes, inflicting *10* points of damage on all neighburing
@@ -130,14 +130,14 @@ The symbol used in its textual representation is a lower-case `c` which becomes 
 the cycle immediately before exploding.
 
 <!-- TOC --><a name="wall-nut-plant"></a>
-### Wall-Nut plant
+### The wall-nut plant
 
 This plant (to be implemented by a class called `WallNut`) does not damage the zombies and
 simply acts as a barrier to them, having resistance *10*.
 It costs *50* suncoins. The symbol used in its textual representation is the string `WN`.
 
 <!-- TOC --><a name="buckethead-zombie"></a>
-### Buckethead zombie
+### The buckethead zombie
 
 This zombie (to be implemented by a class called `BucketHeadZombie`) is slower but more resistant than
 the common zombie: it moves every *4* cycles and has
@@ -146,7 +146,7 @@ resistance *8*.
 The symbol used in its textual representation is the string `Bz`.
 
 <!-- TOC --><a name="sporty-zombie"></a>
-### Sporty zombie
+### The sporty zombie
 
 This zombie (to be implemented by a class called `SportyZombie`) is faster but less resistant
 than the common zombie: it moves every cycle and has
@@ -155,7 +155,7 @@ resistence *2*
 The symbol used in its textual representation is the string `Sz`.
 
 <!-- TOC --><a name="explosive-zombie"></a>
-### Explosive zombie
+### The explosive zombie
 
 This zombie (to be implemented by a class called `ExplosiveZombie`) has the same velocity and
 resistance as a common zombie but if it is killed by a plant, it explodes causing *3* points
@@ -164,7 +164,7 @@ of damage to all neighbouring plants.
 The symbol used in its textual representation is the string `Ez`.
 
 <!-- TOC --><a name="comandos"></a>
-## Commands
+## Introducing new commands
 
 We now extend the command hierarchy by adding new commands, in particular, two commands
 to *cheat* in the game, with a view to facilitating the debugging (it is supposed that these
@@ -209,14 +209,14 @@ Explosive Zombie: speed='2', damage='1', endurance='5'
 ```
 
 <!-- TOC --><a name="addplantcheatcommand"></a>
-## The `cheatplant` command
+### The `cheatplant` command
 
 This command (to be implemented via a class called `AddPlantCheatCommand`) is used to add a plant to
 the game, the difference with the `add` command being that it does not consume any suncoins. Similarly
 to the `add` command, use of this command causes the game to be updated.
 
 <!-- TOC --><a name="addzombiecommand"></a>
-## The `addzombie` command
+### The `addzombie` command
 
 This command (to be implemented via a class called `AddZombieCheatCommand`) is used to manually add a zombie
 of the specified type either on any free tile of the board or in the column where the zombies appear
@@ -353,7 +353,7 @@ sun's countdown will be updated.
 A continuación te explicamos algunos detalles que te facilitarán la implementación de algunas de las nuevas funcionalidades de la aplicación.
 
 <!-- TOC --><a name="variables-estáticas"></a>
-### Static variables
+### The use of static variables
 
 <!-- TOC --><a name="soles-generados-y-soles-cogidos"></a>
 #### Generated suns and caught suns
@@ -371,7 +371,7 @@ counter in a method of the ZombieManager and having to update it via the game de
 zombie manager on receiving an "I'm dead"-call from a zombie).
 
 <!-- TOC --><a name="catchcommand"></a>
-#### CatchCommand
+#### The `catch` command
 
 In order to implement the restriction that a `catch` command can only be executed once on each cycle,
 we need to store the information as to whether or not a `catch` command has already been executed on that
