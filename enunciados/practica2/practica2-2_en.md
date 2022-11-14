@@ -234,7 +234,7 @@ copy of the list of available plants (using `Collections.unmodifiableList`, or t
 `List.copyOf`); see also the FAQ (in Spanish) regarding this point.
 
 [^1]: The read-only protection only applies to adding, deleting or replacing elements of the list
-itself -- any attempt to do so will provoke a `UnsupportedOperationException` at run-time -- but if the
+itself -- any attempt to do so will provoke an `UnsupportedOperationException` at run-time -- but if the
 contents of the list are mutable objects, the list is not in any way protected against modification
 of these contents, so the read-only/unmodifiable property is weak and returning such a list from a
 public method could still be considered to be breaking encapsulation.
