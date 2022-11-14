@@ -1,13 +1,13 @@
 <!-- TOC start -->
 - [Assignment 2 (Part II): Plants versus Zombies Extended](#práctica-2-parte-ii-plantas-contra-zombis-extended)
 - [Basic extensions to the game](#extensiones-básicas-del-juego)
-  * [Introducing new game elements](#incorporación-de-nuevos-objetos-de-juego)
+  * [New game elements](#incorporación-de-nuevos-objetos-de-juego)
     + [The cherry bomb plant](#cherrybomb-plant)
     + [The wall-nut plant](#wall-nut-plant)
     + [The buckethead zombie](#buckethead-zombie)
     + [The sporty zombie](#sporty-zombie)
     + [The explosive zombie](#explosive-zombie)
-  * [Introducing new commands](#comandos)
+  * [New commands](#comandos)
     + [The `listzombies` command](#listzombiescommand)
     + [The `cheatplant` ommand](#addplantcheatcommand)
     + [The `addzombie` command](#addzombiecommand)
@@ -60,7 +60,7 @@ in the template of the previous assignment. In particular, the `Messages` class 
 the new game elements.
 
 <!-- TOC --><a name="incorporación-de-nuevos-objetos-de-juego"></a>
-## Introducing new game elements
+## New game elements
 
 First, if you have not already done so, you should create two subclasses of `GameObject` called `Plant`
 and `Zombie` from which all the different zombie and plant classes inherit.
@@ -165,7 +165,7 @@ of damage to all neighbouring plants.
 The symbol used in its textual representation is the string `Ez`.
 
 <!-- TOC --><a name="comandos"></a>
-## Introducing new commands
+## New commands
 
 We now extend the command hierarchy by adding new commands, in particular, two commands
 to *cheat* in the game, with a view to facilitating the debugging (it is supposed that these
