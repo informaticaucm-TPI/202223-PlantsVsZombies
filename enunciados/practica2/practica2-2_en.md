@@ -17,7 +17,7 @@
 - [Implementation details](#detalles-de-implementación)
     + [The use of static variables](#variables-estáticas)
       - [Generated suns and caught suns](#soles-generados-y-soles-cogidos)
-      - [CatchCommand](#catchcommand)
+      - [The `catch` command](#catchcommand)
   * [The `GameAction` interface and the `ExplosionAction` class](#la-interfaz-gameactions-y-las-acciones-explosionaction)
 - [Tests](#pruebas)
 <!-- TOC end -->
