@@ -29,9 +29,7 @@
 
 **Objective:** inheritance, polymorphism, abstract classes and interfaces
 
-**Preguntas Frecuentes**: Como es habitual que tengáis dudas (es normal) las iremos recopilando en este [documento de preguntas frecuentes](../faq.md). Para saber los últimos cambios que se han introducido [puedes consultar la historia del documento](https://github.com/informaticaucm-TPI/202223-PlantsVsZombies/commits/main/enunciados/faq.md).
-
-First a **warning**:
+We start with a **warning**:
 
 > If you break encapsulation, use methods that return lists or make any use of the Java constructs
 `instanceof` or `getClass()` (with the exception of the possible use of `getClass()` in `equals`
