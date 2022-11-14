@@ -10,7 +10,7 @@
   * [Introducing new commands](#comandos)
     + [The `listzombies` command](#listzombiescommand)
     + [The `cheatplant` ommand](#addplantcheatcommand)
-    + [the `addzombie` command](#addzombiecommand)
+    + [The `addzombie` command](#addzombiecommand)
 - [Changing the mechanism for obtaining suncoins](#cambiando-la-mecánica-para-conseguir-suncoins)
   * [Description](#detalles-de-la-mecánica)
   * [Implementation](#implementación-de-la-mecánica)
