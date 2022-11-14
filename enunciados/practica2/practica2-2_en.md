@@ -244,7 +244,7 @@ Similarly to the `add` command, use of this command causes the game to be update
 # Changing the mechanism for obtaining suncoins.
 
 Until now, the sunflowers updated
-the number of suncoins automatically after a given number of cycles. We now modify the mechanism
+the number of suncoins automatically after a certain number of cycles. We now modify the mechanism
 by which suncoins are obtained,
 making it more similar to that of the original game, so that the sunflowers generate suns
 that the player has to explicitly catch in order to obtain suncoins. This will involve changes
