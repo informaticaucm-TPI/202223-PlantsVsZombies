@@ -358,15 +358,15 @@ A continuación te explicamos algunos detalles que te facilitarán la implementa
 <!-- TOC --><a name="soles-generados-y-soles-cogidos"></a>
 #### Generated suns and caught suns
 
-You should implement the counter of generated suns and that of caught suns using static attributes
-of the `Sun` class which are updated in the `onEnter()` and `onExit()` methods of this class [^2]
-or in the method of the `Sun` class that implements a sun being caught (which
-you should declare in the `GameItem` interface). Implementing these counters in `Game` or
-`GameObjectContainer` would break abstraction. Remember to
+Implementing the counter of generated suns and that of caught suns in the `Game` class or
+the `GameObjectContainer` class would break abstraction. A good way to implement these counters is
+as static attributes of the `Sun` class, which can be updated in the `onEnter()` method and
+either in the `onExit()` method or in the method of the `Sun` class that implements a sun being
+caught (which should be declared in the `GameItem` interface)[^2]. Remember to
 reset these counters when the `reset` command is used.
 
 [^2]: If you have not already done so, you could also implement the counter of the number of zombies
-on the board via a static attribute of the `Zombie` class in the same way (instead of storing this
+on the board via a static attribute of the `Zombie` class in a similar way (instead of storing this
 counter in a method of the ZombieManager and having to update it via the game delegating to the
 zombie manager on receiving an "I'm dead"-call from a zombie).
 
