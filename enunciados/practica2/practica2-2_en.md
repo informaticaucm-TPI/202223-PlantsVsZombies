@@ -1,5 +1,5 @@
 <!-- TOC start -->
-- [Assignment 2 (Part II): Plants versus Zombis Extended](#práctica-2-parte-ii-plantas-contra-zombis-extended)
+- [Assignment 2 (Part II): Plants versus Zombies Extended](#práctica-2-parte-ii-plantas-contra-zombis-extended)
 - [Basic extensions to the game](#extensiones-básicas-del-juego)
   * [Introducing new game elements](#incorporación-de-nuevos-objetos-de-juego)
     + [The cherry bomb plant](#cherrybomb-plant)
