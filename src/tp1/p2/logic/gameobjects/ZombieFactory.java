@@ -18,7 +18,7 @@ public class ZombieFactory {
 	/* @formatter:on */
 
 	public static boolean isValidZombie(int zombieIdx) {
-		return zombieIdx >= 0 || zombieIdx < AVAILABLE_ZOMBIES.size();
+		return zombieIdx >= 0 && zombieIdx < AVAILABLE_ZOMBIES.size();
 	}
 
 	public static Zombie spawnZombie(int zombieIdx, GameWorld game, int col, int row) {
