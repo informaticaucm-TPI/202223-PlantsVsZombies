@@ -197,7 +197,7 @@ Caught suns: 0
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
 
 Command > 
-[DEBUG] Executing: catch 1 7
+[DEBUG] Executing: catch 7 1
 
 Number of cycles: 6
 Sun coins: 60

@@ -219,7 +219,7 @@ Available commands:
 
 El comportamiento completo de la mecánica de juego es el siguiente:
 
-- Cada `Sunflower` en vez de añadir *suncoins* directamente al jugador cuando pasan 3 ciclos, añadirá un `Sun` en su casilla.
+- Cada `Sunflower` en vez de añadir *suncoins* directamente al jugador cuando pasan 3 ciclos, añadirá un `Sun` en una casilla aleatoria.
 
 - Además, aleatoriamente cada *5* ciclos se genera un sun en una posición aleatoria del tablero.
 

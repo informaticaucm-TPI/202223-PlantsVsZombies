@@ -10,7 +10,7 @@ h
 
 
 
-catch 1 7
+catch 7 1
 cheatplant sunflower 0 0
 cp s 0 1
 cp peashooter 7 0

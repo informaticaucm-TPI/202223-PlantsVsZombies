@@ -14,6 +14,6 @@ public interface GameWorld {
 
 	boolean tryToCatchObject(int col, int row);
 
-	boolean addItem(GameItem item);
+	boolean addItem(GameObject gameObject);
 
 }
