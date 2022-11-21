@@ -10,12 +10,14 @@ h
 
 
 
+catch 7 1
 cheatplant sunflower 0 0
 cp s 0 1
 cp peashooter 7 0
 cp p 7 1
 cp wall-nut 7 2
 cp wn 7 3
+c 1 3
 addzombie 0 7 0
 az 1 8 1
 az 2 8 2
@@ -38,27 +40,6 @@ cp p 5 1
 
 cp p 3 2
 r easy 123
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

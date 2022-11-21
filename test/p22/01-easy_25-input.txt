@@ -1,6 +1,6 @@
 Q
 RST
-
+Helping
 
 
 
@@ -12,4 +12,13 @@ RST
 
 
 R
+
+
+
+
+
+r 37 HARD
+r a H
+r 45 L
+r HARD 37
 e

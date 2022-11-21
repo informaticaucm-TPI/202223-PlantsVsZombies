@@ -4,9 +4,9 @@ a
 
 
 
-a
-a
-a
-a
+a p a b
+a p 1 b
+a x 1 1
+a p 1 1
 a
 e

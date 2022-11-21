@@ -105,4 +105,10 @@ public class PlantsVsZombiesTests {
 				Paths.get("test/p22/05-easy_123-output.txt"), new String[] { "EASY", "123" });
 	}
 
+	@Test
+	public void test06() {
+		parameterizedTest(Paths.get("test/p22/06-easy_123-input.txt"), Paths.get("test/p22/06-easy_123-expected.txt"),
+				Paths.get("test/p22/06-easy_123-output.txt"), new String[] { "EASY", "123" });
+	}
+
 }
