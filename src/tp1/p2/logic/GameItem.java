@@ -26,7 +26,13 @@ public interface GameItem {
 	 */
 	boolean receivePlantAttack(int damage);
 
-	
+	/**
+	 * Checks if the game object fills its current position, that is, does not allow other {@link GameObject} to share its position.
+	 * 
+	 * @return
+	 */
+	boolean fillPosition();
+
 	/**
 	 * Try to catch a sun (if no other sun has been catched this cycle).
 	 * 
