@@ -2,6 +2,30 @@
 
 ## Práctica 2
 
+### Algunos tests me fallan al implementar la práctica 2 (parte 2, sin soles) porque es colocan zombies donde no tocan
+
+Al añadir la clase `SunsManager` a tu práctica, es posible que tengas el siguiente código en `Game#udpate()`:
+
+```java
+public void update() {
+    // ...
+    sunsManager.update();
+    zombiesManager.update();
+    // ...
+}
+```
+
+Pero debería de ser, para que la secuencia de números pseudoaleatorios generados sea adecuado, quedando del siguiente modo:
+```java
+public void update() {
+    // ...
+    zombiesManager.update();
+    sunsManager.update();
+    // ...
+}
+
+```
+
 ### ¿En qué orden actúan los objetos del juego?
 
 En la P2 los objetos del juego se actualizan por orden de creación (el contenedor de objetos ha de encargarse de mantener ese orden). Por ejemplo, en un ciclo en el que un zombie pueda atacar a un girasol, el girasol generará soles si y sólo si ha sido creado en el mismo ciclo en el que apareció el zombie (porque las acciones del usuario son anteriores a las de la máquina) o en uno anterior.
