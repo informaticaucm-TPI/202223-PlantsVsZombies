@@ -48,7 +48,7 @@ public class Messages {
 
 	public static final String COMMAND_INCORRECT_PARAMETER_NUMBER = "Incorrect parameter number";
 
-	public static final String INVALID_POSITION = "Invalid position";
+	public static final String INVALID_POSITION = "Invalid position (%s, %s)";
 
 	public static final String INVALID_GAME_OBJECT = String.format("Invalid object%n");
 
@@ -79,6 +79,20 @@ public class Messages {
 	public static final String AVAILABLE_ZOMBIES = "Available zombies:";
 
 	public static final String UNEXPECTED_RUNTIME_ERROR = "Oops!, ಠ_ಠ";
+
+	public static final String SCORE = "Score:";
+
+	public static final String NEW_RECORD = "New record!: ";
+
+	public static final String RECORD = "Record: ";
+
+	public static final String RECORD_FILENAME = "record.txt";
+
+	public static final String RECORD_WRITE_ERROR = "An error ocurred on writing record to '%s'".formatted(RECORD_FILENAME);
+
+	public static final String RECORD_READ_ERROR = "An error ocurred on reading record from '%s'".formatted(RECORD_FILENAME);
+	
+	public static final String CURRENT_RECORD = "%s record is %d";
 
 	//
 	// Game Objects
@@ -137,6 +151,8 @@ public class Messages {
 	//
 	// User actions
 	//
+
+	public static final String COMMAND_DEFAULT_ALREADY_INITILIZED = "There is already a default command";
 
 	public static final String COMMAND_ADD_NAME = "add";
 
@@ -221,6 +237,14 @@ public class Messages {
 	public static final String NO_CATCHABLE_IN_POSITION = "No sun in (%d, %d)";
 
 	public static final String SUN_ALREADY_CAUGHT = "Sun already caught";
+
+	public static final String COMMAND_SHOW_RECORD_NAME = "Record";
+
+	public static final String COMMAND_SHOW_RECORD_SHORTCUT = "o";
+
+	public static final String COMMAND_SHOW_RECORD_DETAILS = "Rec[o]rd";
+
+	public static final String COMMAND_SHOW_RECORD_HELP = "show record of the current level";
 
 	/**
 	 * Formats an debug message.

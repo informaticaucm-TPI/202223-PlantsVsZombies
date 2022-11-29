@@ -17,9 +17,9 @@ public interface GameStatus {
 	int getSuncoins();
 
 	/**
-	 * Get the number of generated suns.
+	 * Get number of remaining zombies for this game.
 	 * 
-	 * @return the number of generated suns
+	 * @return the remaining zombies.
 	 */
 	int getRemainingZombies();
 

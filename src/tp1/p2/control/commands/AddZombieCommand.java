@@ -1,12 +1,9 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
+import tp1.p2.control.exceptions.CommandParseException;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.Zombie;
-import tp1.p2.logic.gameobjects.ZombieFactory;
 import tp1.p2.view.Messages;
 
 public class AddZombieCommand extends Command {
@@ -48,12 +45,12 @@ public class AddZombieCommand extends Command {
 	}
 
 	@Override
-	public ExecutionResult execute(GameWorld game) {
+	public boolean execute(GameWorld game) throws GameException {
 		// TODO add your code here
 	}
 
 	@Override
-	public Command create(String[] parameters) {
+	public Command create(String[] parameters) throws GameException {
 		// TODO add your code here
 	}
 
