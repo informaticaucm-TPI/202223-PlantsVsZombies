@@ -41,6 +41,31 @@ public class GameObjectContainer {
 		// TODO add your code here
 	}
 
+	public void update() {
+		// Can't use for-each loop (for(GameObject g : gameObjexts)) without errors.
+		for(int i = 0; i < gameObjects.size(); i++) {
+			GameObject g = gameObjects.get(i);
+			if(g.isAlive()) {
+				g.update();
+			}
+		}
+	}
+
+	public boolean isFullyOccupied(int col, int row) {
+		int i=0;
+		boolean fullyOcuppied = false;
+		
+		while (i<gameObjects.size() && !fullyOcuppied) {
+			GameObject g = gameObjects.get(i);
+			if (g.isAlive() && g.isInPosition(col, row)) {
+				fullyOcuppied = g.fillPosition();
+			}
+			i++;
+		}
+
+		return fullyOcuppied;
+	}
+
 	// TODO add your code here
 
 }

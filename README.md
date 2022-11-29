@@ -8,3 +8,7 @@
 - [Práctica 2 (parte II)](./enunciados/practica2/practica2_2.md)
 	- (2022/11/21) Pruebas de la práctica (sin implementación de soles) disponibles en `tp1.p2.parte2.PlantsVsZombiesSinSoles`
 	- (2022/11/21) [Pistas y código adicional para que podáis revisarlo](https://github.com/informaticaucm-TPI/202223-PlantsVsZombies/pull/4/files)
+
+- [Práctica 3](./enunciados/practica3/practica3.md)
+	- [Cambios de la P2 a la P3](https://github.com/informaticaucm-TPI/202223-PlantsVsZombies/pull/5/files)
+	

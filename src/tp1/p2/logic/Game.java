@@ -101,6 +101,20 @@ public class Game implements GameStatus, GameWorld {
 		return this.actions.size() > 0;
 	}
 
+	/**
+	 * Checks if a cell is fully occupied, that is, the position can be shared between an NPC (Plant, Zombie) and Suns .
+	 * 
+	 * @param col Column of the cell
+	 * @param row Row of the cell
+	 * 
+	 * @return <code>true</code> if the cell is fully occupied, <code>false</code>
+	 *         otherwise.
+	 */
+	@Override
+	public boolean isFullyOcuppied(int col, int row) {
+		return this.container.isFullyOccupied(col, row);
+	}
+
 	// TODO add your code here
 
 }
