@@ -17,8 +17,8 @@ assignment in two ways:
   flexibility in regard to where the error is handled (and the error message printed).
 
 - *File handling*: a useful addition to the application would be the facility to save
-   and load records containing a high-score for each level of the game. This requires
-   handling scores, with points given for each zombie killed.
+   and load high-scores for each level of the game. Clearl, this requires defining the
+   scoring to be used, here, with points given for each zombie killed.
   
 # Exception handling
 
