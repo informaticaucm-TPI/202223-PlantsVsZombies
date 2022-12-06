@@ -46,7 +46,7 @@ message to the standard output to be displayed on the screen. In the general cas
 more data about the error and its context may be transmitted between code locations and the
 error-handling may require more complex actions than simply printing a message to the screen.
 
-[^1]: The error code mechanism of C and C++ is somewhat primitive in
+[^1]: The error-code mechanism of C and C++ is somewhat primitive in
 comparison, though it is also much less computationally costly, which is why C++ retains it
 as well as having an exception mechanism similar to that of Java (though this exception mechanism
 is less type-checked and more difficult to use than the Java equivalent).
