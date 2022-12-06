@@ -143,9 +143,9 @@ print the level and seed to be used.
   The header of the method `execute()` should declare that it can throw `CommandExecuteException`
 
 - The controller `run()` method should capture all the exceptions and print the corresponding error
-messages so will now have the following aspect:
+  messages so will now have the following aspect:
 
-```java
+  ```java
 	while (!game.isFinished() && !game.isPlayerQuits()) {
 
 		// 1. Draw
@@ -163,7 +163,7 @@ messages so will now have the following aspect:
 			System.out.println(error(e.getMessage()));
 		}
 	}
-``` 
+  ``` 
 
 It is often good practice in exception-handling to catch a low-level exception and then throw a high-level exception
 that *wraps* it. The high-level message will contain a high-level (less specific) message. For example, in the 
