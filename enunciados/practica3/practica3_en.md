@@ -122,25 +122,25 @@ print the level and seed to be used.
 - You should implement the exception classes described above.
 
 - The header of the methods `create(String[] parameters)` and `parse(String[] commandWords)` of the
-`Command` class should declare that they can throw `CommandParseException`. For example, the former
-method could throw an exception if the command entered by the user has parameters but the default
-`create()` method (that of the `Command` class) has not been overwritten in a concrete subclass (so
-either that command should not have parameters or the programmer should have overwritten the
-`create()` method for that command).
+  `Command` class should declare that they can throw `CommandParseException`. For example, the former
+  method could throw an exception if the command entered by the user has parameters but the default
+  `create()` method (that of the `Command` class) has not been overwritten in a concrete subclass (so
+  either that command should not have parameters or the programmer should have overwritten the
+  `create()` method for that command).
 
-```java
-    throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
-```
+  ```java
+      throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+  ```
 
-An example of when the latter method can throw such an exception is if the input string does not
-match any of the existing commands (rather than returning `null` and obliging the controller to treat
-the case with an *if-then-else* structure).
+  An example of when the latter method can throw such an exception is if the input string does not
+  match any of the existing commands (rather than returning `null` and obliging the controller to treat
+  the case with an *if-then-else* structure).
 
-```java
-    throw new CommandParseException(Messages.UNKNOWN_COMMAND);
-```
+  ```java
+     throw new CommandParseException(Messages.UNKNOWN_COMMAND);
+  ```
 
-The header of the method `execute()` should declare that it can throw `CommandExecuteException`
+  The header of the method `execute()` should declare that it can throw `CommandExecuteException`
 
 - The controller `run()` method should capture all the exceptions and print the corresponding error
 messages so will now have the following aspect:
