@@ -37,7 +37,7 @@ Por otra parte, nos ocuparemos de alguna excepción lanzada por el sistema, es d
 Una de las principales modificaciones que realizaremos al incluir el manejo de excepciones en el juego consistirá en ampliar la comunicación entre los comandos y el controlador. Eliminaremos `ExecutionResult` y utilizaremos un `boolean` para indicar si es necesario pintar el juego, pero también se contemplará la posibilidad de que se haya producido un error de forma que, controlando el flujo de las excepciones que puedan producirse durante el parseo o la ejecución de un comando, se podrá informar del error al usuario. Además, puesto que ahora se van a tratar las situaciones de error tanto en el procesamiento como en la ejecución de los comandos, los mensajes de error mostrados al usuario podrán ser mucho más descriptivos que en la práctica anterior. 
 
 Básicamente, los cambios que se deben realizar son los siguientes:
-- Sólo se imprimirá por pantalla `System.out.printXXX` en las clases: `Controller`, `PlantsVsZombies` y comandos `ListPlantsCommand`, `ListZombiesCommand`, `ResetCommand` y `HelpCommand`.
+- Sólo se imprimirá por pantalla `System.out.printXXX` en las clases: `Controller`, `PlantsVsZombies` y comandos `ListPlantsCommand`, `ListZombiesCommand`, `ResetCommand` , `HelpCommand` y `ShowRecordCommand`.
 
 - La cabecera del método `create(String[] parameters)` de la clase `Command` pasa a poder lanzar excepciones de tipo `CommandParseException`:
 
@@ -225,3 +225,4 @@ Hemos creado la clase `tp1.p3.pruebas.PlantsVsZombiesTests` adaptando los tests 
 - Hemos adaptado mínimamente las tests de la práctica anterior a la hora de mostrar las posiciones incorrectas *que ahora deben de mostrarse*.
 - Hemos añadido tests para verificar que funcionan bien las explosiones encadenadas.
 - Hemos añadido un tests adicional para verificar la gestión de los records funciona correctamente.
+- El orden de la ejecución de los tests es relevante en la práctica 3, en caso de ejecución manual, es necesario ejecutar el test 00-easy_25 antes que el test 09-easy_25.

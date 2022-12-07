@@ -115,7 +115,7 @@ controller together with the commands), with the exception of the following prin
 `PlantsVsZombies` class: printing error messages if an error occurs when parsing the command-line parameters
 and printing the level and the seed to be used. Moreover, almost all of this printing from the control
 part of the program can actually be done from the controller, the exceptions being those classes that
-represent commands whose purpose is to print a string (`HelpCommand`, `ListPlantsCommand` and
+represent commands whose purpose is to print a string (`HelpCommand`, `ListPlantsCommand`, `ShowRecordCommand` and
 `ListZombiesCommand`) and the `ResetCommand` class, which, like the `PlantsVsZombies` class, should
 print the level and seed to be used.
 
@@ -265,3 +265,4 @@ The A3 tests in the class `tp1.p3.pruebas.PlantsVsZombiesTests` have been adapte
 - the tests of the previous assignment modified to show incorrect positions
 - tests have been added to check the chaining of explosions
 - tests have been added to check the records work correctly
+- test execution order is relevant in assignment 3, in case of manual executions, test 00-easy_25 needs to be run before test 09-easy_25.
