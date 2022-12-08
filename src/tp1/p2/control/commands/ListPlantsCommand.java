@@ -1,7 +1,7 @@
 package tp1.p2.control.commands;
 
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.logic.gameobjects.Plant;
 import tp1.p2.logic.gameobjects.PlantFactory;
@@ -27,13 +27,13 @@ public class ListPlantsCommand extends Command {
 	}
 
 	@Override
-	public ExecutionResult execute(GameWorld game) {
+	public boolean execute(GameWorld game) throws GameException {
 		System.out.println(Messages.AVAILABLE_PLANTS);
 		// TODO add your code here
 
 		System.out.println();
 
-		return new ExecutionResult(false);
+		return false;
 	}
 
 }

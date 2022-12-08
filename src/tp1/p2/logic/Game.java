@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Random;
 
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.view.Messages;
@@ -28,7 +28,7 @@ public class Game implements GameStatus, GameWorld {
 
 	// TODO add your attributes here
 
-	public Game(long seed, Level level) {
+	public Game(long seed, Level level) throws GameException {
 		this.seed = seed;
 		this.level = level;
 		this.container = new GameObjectContainer();
@@ -39,7 +39,7 @@ public class Game implements GameStatus, GameWorld {
 	 * Resets the game.
 	 */
 	@Override
-	public void reset() {
+	public void reset() throws GameException {
 		reset(this.level, this.seed);
 	}
 
@@ -50,7 +50,7 @@ public class Game implements GameStatus, GameWorld {
 	 * @param seed Random seed Used to initialize the game.
 	 */
 	@Override
-	public void reset(Level level, long seed) {
+	public void reset(Level level, long seed) throws GameException {
 		// TODO add your code here
 		this.cycle = 0;
 		this.actions = new ArrayDeque<>();
@@ -62,7 +62,7 @@ public class Game implements GameStatus, GameWorld {
 	 * 
 	 */
 	@Override
-	public void update() {
+	public void update() throws GameException {
 
 		// 1. Execute pending actions
 		executePendingActions();
@@ -87,6 +87,9 @@ public class Game implements GameStatus, GameWorld {
 
 		// 6. Notify commands that a new cycle started
 		Command.newCycle();
+		
+		// 7. Update record
+		// TODO your code here
 
 	}
 
